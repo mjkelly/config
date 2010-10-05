@@ -1,0 +1,10 @@
+# Use bogofilter to kill bad email.
+# Michael Kelly
+# Wed Dec 19 21:33:01 PST 2007
+
+:0fw
+| /usr/bin/bogofilter -u -e -p
+
+:0:
+* ^X-Bogosity: Spam, tests=bogofilter
+SPAM/

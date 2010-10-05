@@ -1,0 +1,14 @@
+### Everywhere ###
+text/html; /usr/bin/lynx -force_html -dump %s; copiousoutput
+### Linux ###
+image/jpeg; /usr/bin/qiv %s
+image/pjpeg; /usr/bin/qiv %s
+image/gif; /usr/bin/qiv %s
+image/png; /usr/bin/qiv %s
+application/msword; /usr/bin/wvWare -1 %s | /usr/bin/lynx -stdin -dump; copiousoutput
+application/pdf; /usr/bin/evince %s
+### OS X ###
+#application/pdf; open %s
+#image/jpeg; open %s
+#image/gif; open %s
+#image/png; open %s

@@ -1,0 +1,53 @@
+# Michael Kelly
+# mutt index coloring
+# Tue Dec 23 23:09:45 PST 2003
+
+# this started out as Sven's coloring file, 
+# so there are still some of his comments in here.
+
+# the LAST matching rule is used
+
+## ==================================================
+## non-mail stuff
+## ==================================================
+# error messages
+color error	red	black
+
+# informational messages
+color message	white	black
+
+# The indicator for the current message
+# whether it is an arrow or an "inverse line":
+color indicator	white	red
+
+# status lines in the folder index.
+# used for the mini-help line.
+color status	white	blue
+
+# The "tree" display of threads within the folder index.
+color tree	red	black
+
+## ==================================================
+## mail (order used to enforce rule precedence,
+## not logic)
+## ==================================================
+
+#  Deleted Mails - use dark color
+#  as these are already "dealt with".
+color index	blue	black '~D'
+
+#  "DONE mails" ie those I have already replied to.
+color index	blue	black '~Q'
+
+#  MailList - these messages have been sent to
+#  a known mailing list.  What do these do in my mailbox??
+folder-hook \\! 'color index white blue  ~l'
+# only show this for the mailbox -
+# not in other inboxes, of course.
+
+# from me
+color index	cyan	black '~P'
+
+# flagged messages
+color index	brightred	black '~F'
+

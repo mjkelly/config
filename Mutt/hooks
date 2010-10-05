@@ -1,0 +1,17 @@
+# hooks of all kinds
+# Michael Kelly
+# Mon Feb 27 17:06:28 PST 2006
+
+# turn off threading on all non-list boxes
+folder-hook ".*" "set sort=date-received"
+
+# enable threads on mailing lists, but not on ordinary mailboxes, where we
+# only see half the emails...
+folder-hook "list_" "set sort=threads"
+# and on archives
+folder-hook "arch_" "set sort=threads"
+
+# turn off PGP signatures to the list, but on for everyone else
+#send-hook ".*" "set pgp_autosign=yes"
+#send-hook up "set pgp_autosign=no"
+

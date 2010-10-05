@@ -1,0 +1,43 @@
+# Key bindings
+# Michael Kelly
+# Thu Jul 24 08:38:15 PDT 2003
+
+bind  pager "H" "display-toggle-weed"	# to free up h
+
+# vi-style movement
+bind pager "j" "next-line"
+bind pager "k" "previous-line"
+bind pager "h" "previous-entry"
+bind pager "l" "next-entry"
+
+# arrow-key movement
+bind pager "<down>" "next-line"
+bind pager "<up>" "previous-line"
+bind pager "<left>" "previous-entry"
+bind pager "<right>" "next-entry"
+
+bind pager "]" "half-down"
+bind pager "[" "half-up"
+
+bind pager "\cD" "half-down"
+bind pager "\cU" "half-up"
+
+# get rid of 'h' in the index to prevent unwanted header-display changes when
+# I try to scroll off the end of a mailbox (out of the pager and into the index)
+bind index "h" "noop"
+
+# originally from David T-G on mutt-users, I think. 
+macro pager ,@r13on "<enter-command>set display_filter=~/bin/rot13;macro pager \\cX ,@r13off 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"
+macro pager ,@r13off "<enter-command>unset display_filter;macro pager \\cX ,@r13on 'Toggle ROT13 decoding'\n<display-toggle-weed><display-toggle-weed>"
+macro pager \cX ,@r13on 'Toggle ROT13 decoding'
+
+# for url-viewing
+macro pager "\cB" "<pipe-message>urlview\n"	"View URLS."
+
+macro index "S" "<save-message>=SPAM<return>y"
+
+macro compose "M" ":my_hdr Mail-followup-to: $EMAIL$"
+
+macro pager \cV "<pipe-message>gpg --verify -<return>"
+macro pager \cP "<pipe-message>gpg --decrypt -<return>"
+
