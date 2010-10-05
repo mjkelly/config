@@ -10,6 +10,8 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+require("vicious")
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 beautiful.init("/usr/share/awesome/themes/default/theme.lua")
@@ -95,6 +97,21 @@ mytextclock = awful.widget.textclock({ align = "right" })
 -- Create a systray
 mysystray = widget({ type = "systray" })
 
+mycpuwidget = awful.widget.graph()
+mycpuwidget:set_width(50)
+mycpuwidget:set_background_color("#222222")
+mycpuwidget:set_color("#FF5656")
+--mycpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
+vicious.register(mycpuwidget, vicious.widgets.cpu, "$1", 1)
+
+mynetwidget_up = widget({ type = "textbox" })
+mynetwidget_up.width = 45
+vicious.register(mynetwidget_up, vicious.widgets.net, string.format("<span color='#FF5656'>%sk</span>", "${wlan0 up_kb}"), 2)
+
+mynetwidget_down = widget({ type = "textbox" })
+mynetwidget_down.width = 45
+vicious.register(mynetwidget_down, vicious.widgets.net, string.format("<span color='#56FF56'>%sk</span>", "${wlan0 down_kb}"), 2)
+
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
@@ -161,6 +178,9 @@ for s = 1, screen.count() do
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
+            mycpuwidget,
+            mynetwidget_down,
+            mynetwidget_up,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
