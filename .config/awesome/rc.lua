@@ -98,7 +98,7 @@ mytextclock = awful.widget.textclock({ align = "right" })
 mysystray = widget({ type = "systray" })
 
 mycpuwidget = awful.widget.graph()
-mycpuwidget:set_width(50)
+mycpuwidget:set_width(45)
 mycpuwidget:set_background_color("#222222")
 mycpuwidget:set_color("#FF5656")
 --mycpuwidget:set_gradient_colors({ "#FF5656", "#88A175", "#AECF96" })
@@ -106,11 +106,11 @@ vicious.register(mycpuwidget, vicious.widgets.cpu, "$1", 1)
 
 mynetwidget_up = widget({ type = "textbox" })
 mynetwidget_up.width = 45
-vicious.register(mynetwidget_up, vicious.widgets.net, string.format("<span color='#FF5656'>%sk</span>", "${wlan0 up_kb}"), 2)
+vicious.register(mynetwidget_up, vicious.widgets.net, string.format("<span color='#BB7777'>%sk</span>", "${wlan0 up_kb}"), 2)
 
 mynetwidget_down = widget({ type = "textbox" })
 mynetwidget_down.width = 45
-vicious.register(mynetwidget_down, vicious.widgets.net, string.format("<span color='#56FF56'>%sk</span>", "${wlan0 down_kb}"), 2)
+vicious.register(mynetwidget_down, vicious.widgets.net, string.format("<span color='#77BB77'>%sk</span>", "${wlan0 down_kb}"), 2)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -178,13 +178,13 @@ for s = 1, screen.count() do
             mylauncher,
             mytaglist[s],
             mypromptbox[s],
-            mycpuwidget,
-            mynetwidget_down,
-            mynetwidget_up,
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
         mytextclock,
+        mynetwidget_down,
+        mynetwidget_up,
+        mycpuwidget,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
