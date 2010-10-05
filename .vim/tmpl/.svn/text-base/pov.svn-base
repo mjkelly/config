@@ -1,0 +1,19 @@
+/*
+* $filename$
+* $date$
+*/
+
+#include "colors.inc"
+#include "textures.inc"
+#include "kotc.inc"
+
+camera{kotc_cam}
+light_source{kotc_lights}
+
+#declare ship = union{
+}
+
+object{
+	ship
+	pigment{Grey}
+}

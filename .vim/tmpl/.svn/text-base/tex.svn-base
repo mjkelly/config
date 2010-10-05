@@ -1,0 +1,12 @@
+\documentclass[12pt,a4paper]{article}
+\author{Michael Kelly}
+\date{$date$}
+\title{$filename$}
+\pagestyle{headings}
+\begin{document}
+
+\maketitle
+
+
+
+\end{document} 

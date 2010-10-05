@@ -1,0 +1,31 @@
+# a simple, general makefile to package my distributed scripting projects
+
+VERSION=1.0
+NAME=fooApp
+CURLINK=1
+
+DIR=${NAME}-${VERSION}
+
+all: ${DIR}.tgz ${DIR}.zip
+
+${DIR}.tgz:
+${DIR}.zip: ${DIR}/*
+	zip -9 -r ${DIR}.zip ${DIR}
+	tar -zcvf ${DIR}.tgz ${DIR}
+
+
+	if [ ${CURLINK} = 1 ]; \
+	then \
+		rm -f current; \
+		ln -s ${DIR} current; \
+	fi
+
+clean:
+	rm -f ${DIR}*.tgz
+	rm -f ${DIR}*.zip
+
+	if [ ${CURLINK} = 1 ]; \
+	then \
+		rm -f current; \
+	fi
+

@@ -1,0 +1,12 @@
+" ~/.vimrc.text
+" Settings for editing plain text.
+" Used for composing email in mutt.
+" Michael Kelly
+" Sat May 15 11:32:38 PDT 2004
+
+set textwidth=72
+set comments=nb:>
+set formatoptions=tcq
+set syn=mail
+set nocindent
+set nosmartindent
