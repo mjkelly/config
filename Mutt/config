@@ -55,7 +55,8 @@ set move=ask-yes
 set sleep_time=0
 
 # how to sort messages. this is modified on a folder-by-folder basis in 'hooks'.
-set sort=date-received
+#set sort=date-received
+set sort=threads
 
 # don't collapse a thread containing unread mail.
 unset collapse_unread
