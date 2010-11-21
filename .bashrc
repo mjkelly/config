@@ -93,3 +93,8 @@ export PS1='[$?]\u@\h:\w$ '
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+function kc() {
+    keychain ~/.ssh/*-key
+    source ~/.keychain/$HOSTNAME-sh*
+}
