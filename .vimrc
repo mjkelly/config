@@ -1,6 +1,6 @@
 " ~/.vimrc
 " Michael Kelly
-" Mon Mar  2 21:18:05 PST 2009
+" Wed Dec 15 01:56:33 EST 2010
 
 " **********************************************************
 " * variables                                              *
@@ -47,7 +47,6 @@ map <C-J> :next<CR>
 map <C-K> :previous<CR>
 
 map <C-I> :call InterpretFile()<CR>
-map <C-B> :!urlview %<CR>
 
 map <C-H> :nohls<CR>
 
@@ -67,6 +66,7 @@ map ,n :setlocal nu! nu?<CR>
 map ,i :setlocal ignorecase! ignorecase?<CR>
 map ,r :setlocal ruler! ruler?<CR>
 map ,t :NERDTreeToggle<CR>
+map ,u :!urlview %<CR>
 map <silent> ,l :call VimPlaylistAdd()<CR>
 
 
