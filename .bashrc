@@ -94,7 +94,11 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+# Grab the latest environment set by keychain.
+source ~/.keychain/$HOSTNAME-sh
+
+# Function to reload environment and start a new ssh-agent if necessary.
 function kc() {
-    keychain ~/.ssh/*-key
-    source ~/.keychain/$HOSTNAME-sh*
+    keychain --agents ssh ~/.ssh/*-key
+    source ~/.keychain/$HOSTNAME-sh
 }
