@@ -151,6 +151,7 @@ if !exists("autocmds")
 	au BufEnter *.ml :call Use2Spaces()
 	au BufEnter *.vimrc :call UseTabs()
 	au BufEnter Makefile :call UseTabs()
+	au BufEnter *.html :call Use2Spaces()
 
 	au BufEnter *.email source ~/.vimrc.text
 	au BufNewFile,BufRead *.txt :source ~/.vimrc.text
