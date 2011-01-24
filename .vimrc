@@ -1,12 +1,11 @@
 " ~/.vimrc
 " Michael Kelly
-" Wed Dec 15 01:56:33 EST 2010
+" Sun Jan 23 20:55:48 EST 2011
 
 " **********************************************************
 " * variables                                              *
 " **********************************************************
 set nocompatible
-
 set nu
 set noerrorbells
 set nomodeline
@@ -22,38 +21,29 @@ set preserveindent
 set showmatch
 set incsearch
 set hlsearch
-
 set autoindent
 set nocindent
 set smartindent
+
+syntax on
+
+colorscheme koehler
+
+set viminfo='100,<500,s10,h
 
 " **********************************************************
 " * keyboard mappings                                      *
 " **********************************************************
 
-colorscheme koehler
-
 source ~/.vim/sparc.vim
 source ~/.vim/yanktmp.vim
-
-" for PhpDoc support
-source ~/.vim/php-doc.vim
-"imap  <esc>:set paste<CR>:exe PhpDoc()<CR>:set nopaste<CR>i
-inoremap  <esc>:call PhpDocSingle()<CR>i
-nnoremap  :call PhpDocSingle()<CR>
-vnoremap  :call PhpDocRange()<CR>
 
 map <C-J> :next<CR>
 map <C-K> :previous<CR>
 
-map <C-I> :call InterpretFile()<CR>
-
 map <C-H> :nohls<CR>
 
 let g:yanktmp_file = $HOME . "/.vim/yanktmp"
-map <silent> sy :call YanktmpYank()<CR>
-map <silent> sp :call YanktmpPaste_p()<CR>
-map <silent> sP :call YanktmpPaste_P()<CR>
 
 source ~/.vim/playlist.vim
 let g:vimplaylist_file = $HOME . "/vimplaylist.m3u"
@@ -65,16 +55,11 @@ map ,p :setlocal paste! paste?<CR>
 map ,n :setlocal nu! nu?<CR>
 map ,i :setlocal ignorecase! ignorecase?<CR>
 map ,r :setlocal ruler! ruler?<CR>
-map ,t :NERDTreeToggle<CR>
 map ,u :!urlview %<CR>
 map <silent> ,l :call VimPlaylistAdd()<CR>
-
-
-
-set viminfo='100,<500,s10,h
-
-syntax on
-
+map <silent> ,y :call YanktmpYank()<CR>
+map <silent> ,p :call YanktmpPaste_p()<CR>
+map <silent> ,P :call YanktmpPaste_P()<CR>
 
 " **********************************************************
 " * functions                                              *
@@ -111,21 +96,16 @@ endfunction
 " process special header fields in templates
 fun! ProcessHeader()
 	exec ':silent %s/\$filename\$/' . expand("%:t") . '/'
-	" note: this is assumed to be the default output of date(1) (which it always is in my experience),
-	" so date formats don't get mixed up
 	exec ':silent %s/\$date\$/' . strftime("%a %b %e %H:%M:%S %Z %Y") . '/'
 	exec ':silent 0'
 endfunction
 
-fun! InterpretFile()
-	exec ':!' . g:interpret_cmd . ' ' . expand("%")
-endfunction
+call Use2Spaces()
+"call Use4Spaces()
 
 " **********************************************************
-" * more config after functions...                         *
+" * autoloaded stuff                                       *
 " **********************************************************
-"call Use2Spaces()
-call Use4Spaces()
 
 if !exists("autocmds")
 	let autocmds = 1
@@ -136,22 +116,14 @@ if !exists("autocmds")
 		\   exe "normal! g'\"" |
 		\ endif
 
-	" for InterpretFile
-	au BufEnter * let g:interpret_cmd="true"
-	au BufEnter *.lsp let g:interpret_cmd="clisp"
-	au BufEnter *.pl let g:interpret_cmd="perl"
-	au BufEnter *.ml let g:interpret_cmd="ocaml"
-	au BufEnter *.py let g:interpret_cmd="python2.4"
-	au BufEnter *.rb let g:interpret_cmd="ruby"
-	au BufEnter *.php let g:interpret_cmd="php -l"
-
 	au BufEnter *.rhtml set syn=eruby
 	au BufEnter *.rhtm set syn=eruby
-	au BufEnter *.lsp :call Use4Spaces()
+	au BufEnter *.lsp :call Use2Spaces()
 	au BufEnter *.ml :call Use2Spaces()
 	au BufEnter *.vimrc :call UseTabs()
 	au BufEnter Makefile :call UseTabs()
 	au BufEnter *.html :call Use2Spaces()
+	au BufEnter *.py :call Use2Spaces()
 
 	au BufEnter *.email source ~/.vimrc.text
 	au BufNewFile,BufRead *.txt :source ~/.vimrc.text
