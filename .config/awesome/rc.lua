@@ -101,7 +101,7 @@ mysystray = widget({ type = "systray" })
 mycpuwidget = awful.widget.graph()
 mycpuwidget:set_width(45)
 mycpuwidget:set_background_color("#222222")
-mycpuwidget:set_color("#FF5656")
+mycpuwidget:set_color("#77BB77")
 
 vicious.register(mycpuwidget, vicious.widgets.cpu, "$1", 1)
 
