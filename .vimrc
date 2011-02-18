@@ -57,9 +57,9 @@ map ,i :setlocal ignorecase! ignorecase?<CR>
 map ,r :setlocal ruler! ruler?<CR>
 map ,u :!urlview %<CR>
 map <silent> ,l :call VimPlaylistAdd()<CR>
-map <silent> ,y :call YanktmpYank()<CR>
-map <silent> ,p :call YanktmpPaste_p()<CR>
-map <silent> ,P :call YanktmpPaste_P()<CR>
+"map <silent> ,y :call YanktmpYank()<CR>
+"map <silent> ,p :call YanktmpPaste_p()<CR>
+"map <silent> ,P :call YanktmpPaste_P()<CR>
 
 " **********************************************************
 " * functions                                              *

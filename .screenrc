@@ -1,24 +1,14 @@
 startup_message off
+# Only on older screens is this on by default:
 #nethack off
 
-# bells are annoying
 vbell_msg ""
-
 vbell off
-
-# lots of scrollback
 defscrollback 5000
-
-# if something kills the enclosing terminal, automatically detach
 autodetach on
 
 # always show the status line
-# (yes, the format is nearly indecipherable)
-#hardstatus alwayslastline "%{ck}[ %?%-Lw%?%{kc}%n*%f %t%{ck}%?%+Lw%? ] %= %{ck}[ %m/%d %c ]"
-# no date+time
 hardstatus alwayslastline "%{ck}[%?%-Lw%?%{kc}%n*%f %t%{ck}%?%+Lw%?]"
-
-#termcapinfo xterm hs@
 
 # show terminal name in activity messages
 activity "[Activity in %n %t]"
@@ -29,13 +19,8 @@ attrcolor b ".I"
 # tell screen how to set colors. AB = background, AF=foreground
 termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
-# this is supposed to help disable changing the titlebar, but it doesn't
-#termcapinfo xterm*|rxvt*|kterm*|Eterm* hs@
-#termcapinfo xterm*|rxvt*|kterm*|Eterm* ts@
-#termcapinfo xterm*|rxvt*|kterm*|Eterm* fs@
-#termcapinfo xterm*|rxvt*|kterm*|Eterm* ds@
-
 # default windows. -M means turn on monitoring.
-screen 0 /usr/bin/mutt
+# For laptop:
+#screen 0 /usr/bin/mutt
+screen 0
 screen 1 
-#select 1
