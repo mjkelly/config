@@ -77,11 +77,9 @@ mymainmenu = awful.menu({ items = {
                                     { "firefox", "/usr/bin/firefox" },
                                     { "chrome", "/usr/bin/google-chrome --enable-plugins" },
                                     { "pidgin", "/usr/bin/pidgin" },
-                                    { "audacious", "/usr/bin/audacious" },
                                     { "deadbeef", "/usr/bin/deadbeef" },
-                                    { "wicd", "/usr/bin/wicd" },
-                                    { "SUSPEND", "gksudo pm-suspend" },
                                     { "mnemosyne", "/usr/bin/mnemosyne" },
+                                    { "SUSPEND", "gksudo pm-suspend" },
                                     { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
                                   }
