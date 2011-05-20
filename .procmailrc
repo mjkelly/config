@@ -44,7 +44,7 @@ INCLUDERC=$PMDIR/lists.rc
 INCLUDERC=$PMDIR/filter-1.rc
 INCLUDERC=$PMDIR/kill.rc
 INCLUDERC=$PMDIR/bogofilter.rc
-INCLUDERC=$PMDIR/spamassassin.rc
+#INCLUDERC=$PMDIR/spamassassin.rc
 INCLUDERC=$PMDIR/filter-2.rc
 
 # Messages that fall through all your procmail recipes are delivered
