@@ -1,0 +1,14 @@
+[user]
+	name = Michael Kelly
+	email = michael@michaelkelly.org
+
+[alias]
+    ci = commit
+    s = status
+    b = branch
+    co = checkout
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
