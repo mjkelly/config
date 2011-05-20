@@ -18,4 +18,4 @@ activity "[Activity in %n %t]"
 # For laptop:
 #screen 0 /usr/bin/mutt
 screen 0
-screen 1 
+screen 1
