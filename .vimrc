@@ -80,8 +80,8 @@ fun! Use4Spaces()
 endfunction
 
 fun! UseTabs()
-	set ts=8
-	set sw=8
+	set ts=4
+	set sw=4
 	set noexpandtab
 	set softtabstop=0
 endfunction
@@ -124,6 +124,7 @@ if !exists("autocmds")
 	au BufEnter Makefile :call UseTabs()
 	au BufEnter *.html :call Use2Spaces()
 	au BufEnter *.py :call Use2Spaces()
+	au BufEnter *.go :call UseTabs()
 
 	au BufEnter *.email source ~/.vimrc.text
 	au BufNewFile,BufRead *.txt :source ~/.vimrc.text
@@ -169,5 +170,9 @@ if !exists("autocmds")
 	au BufEnter *.lua vmap ,c !boxes -d ada-cmt<CR>
 	au BufEnter *.lua nmap ,C !!boxes -d ada-cmt -r<CR>
 	au BufEnter *.lua vmap ,C !boxes -d ada-cmt -r<CR>
+	au BufEnter *.go nmap ,c !!boxes -d c-cmt<CR>
+	au BufEnter *.go vmap ,c !boxes -d c-cmt<CR>
+	au BufEnter *.go nmap ,C !!boxes -d c-cmt -r<CR>
+	au BufEnter *.go vmap ,C !boxes -d c-cmt -r<CR>
 endif
 
