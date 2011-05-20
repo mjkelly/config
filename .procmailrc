@@ -10,7 +10,7 @@
 # You can name this environment variable anything you like
 # (for example PROCMAILDIR) or, if you prefer, don't set it
 # (but then don't refer to it!)
-PMDIR=$HOME/Procmail
+PMDIR=$HOME/.procmail.d
 
 # Put ## before LOGFILE if you want no logging (not recommended)
 LOGFILE=$PMDIR/log
