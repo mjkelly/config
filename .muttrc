@@ -1,24 +1,12 @@
 # Michael Kelly
-# here we just source all the config files I keep in ~/Mutt
-# Tue Dec 23 22:20:49 PST 2003
+# here we just source all the config files I keep in ~/.mutt
+# Fri May 20 02:12:42 EDT 2011
 
-source ~/Mutt/alias
-
-# general configs (mailboxes, sorting prefs, etc)
-source ~/Mutt/config
-
-# keybindings
-source ~/Mutt/bind
-
-# hooks of any kind
-source ~/Mutt/hooks
-
-# modified versions of Sven's Wonderful Coloring ;)
-source ~/Mutt/color.index
-source ~/Mutt/color.body
-
-# mailing lists
-source ~/Mutt/mailinglists
-
-# pgp!
-source ~/Mutt/pgp
+source ~/.mutt/alias
+source ~/.mutt/config
+source ~/.mutt/bind
+source ~/.mutt/hooks
+source ~/.mutt/color.index
+source ~/.mutt/color.body
+source ~/.mutt/mailinglists
+source ~/.mutt/pgp
