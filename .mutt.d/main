@@ -4,7 +4,7 @@
 # vim: filetype=muttrc
 
 source ~/.mutt.d/bind
-source ~/.mutt.d/lists
+source ~/.mutt.d/lists.localonly
 source ~/.mutt.d/pgp
 source ~/.mutt.d/color
 source ~/.mutt.d/alias.localonly
