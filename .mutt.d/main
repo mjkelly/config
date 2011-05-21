@@ -7,6 +7,7 @@ source ~/.mutt.d/bind
 source ~/.mutt.d/lists
 source ~/.mutt.d/pgp
 source ~/.mutt.d/color
+source ~/.mutt.d/alias.localonly
 
 set alias_file="~/.mutt.d/alias.localonly"
 set mailcap_path="~/.mutt.d/mailcap"
