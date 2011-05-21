@@ -1,4 +1,4 @@
-# ~/.procmailrc for (not by!) mkelly
+# ~/.procmailrc
 # Wed Dec 24 00:28:52 PST 2003
 
 # Next may be needed if you invoke programs from your procmailrc, but
@@ -38,14 +38,9 @@ LOGABSTRACT=all
 # Make sure this directory exists!
 MAILDIR=$HOME/Maildir
 
-INCLUDERC=$PMDIR/prekill.rc
-INCLUDERC=$PMDIR/newsletters.rc
-INCLUDERC=$PMDIR/lists.rc
-INCLUDERC=$PMDIR/filter-1.rc
-INCLUDERC=$PMDIR/kill.rc
+INCLUDERC=$PMDIR/filter-prespam.rc
 INCLUDERC=$PMDIR/bogofilter.rc
-#INCLUDERC=$PMDIR/spamassassin.rc
-INCLUDERC=$PMDIR/filter-2.rc
+INCLUDERC=$PMDIR/filter-postspam.rc
 
 # Messages that fall through all your procmail recipes are delivered
 # to your default INBOX (to find out yours, see step 2 above)
