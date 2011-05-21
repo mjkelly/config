@@ -8,7 +8,6 @@
 set nocompatible
 set nu
 set noerrorbells
-set nomodeline
 set showmode
 set nowrap
 set ignorecase
