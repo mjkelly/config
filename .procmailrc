@@ -13,7 +13,7 @@
 PMDIR=$HOME/.procmail.d
 
 # Put ## before LOGFILE if you want no logging (not recommended)
-LOGFILE=$PMDIR/log
+LOGFILE=$PMDIR/log.localonly
 
 # To insert a blank line between each message's log entry, 
 # uncomment next two lines (this is helpful for debugging)
