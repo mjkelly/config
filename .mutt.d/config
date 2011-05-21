@@ -15,8 +15,8 @@ set copy=yes
 set ispell="/usr/bin/aspell -c"
 set sendmail="/usr/bin/msmtp"
 set signature="~/.signature"
-set mailcap_path="~/Mutt/mailcap"
-set alias_file="~/Mutt/alias"
+set mailcap_path="~/.mutt.d/mailcap"
+set alias_file="~/.mutt.d/alias"
 
 #set mbox_type=mbox
 
