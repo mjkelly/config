@@ -38,9 +38,9 @@ LOGABSTRACT=all
 # Make sure this directory exists!
 MAILDIR=$HOME/Maildir
 
-INCLUDERC=$PMDIR/filter-prespam.rc
-INCLUDERC=$PMDIR/bogofilter.rc
-INCLUDERC=$PMDIR/filter-postspam.rc
+INCLUDERC=$PMDIR/filter-prespam.localonly
+INCLUDERC=$PMDIR/bogofilter
+INCLUDERC=$PMDIR/filter-postspam
 
 # Messages that fall through all your procmail recipes are delivered
 # to your default INBOX (to find out yours, see step 2 above)
