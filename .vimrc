@@ -85,6 +85,13 @@ fun! UseTabs()
 	set softtabstop=0
 endfunction
 
+fun! UseTS2Tabs()
+	set ts=2
+	set sw=2
+	set noexpandtab
+	set softtabstop=0
+endfunction
+
 " include a template of the specified type 
 fun! InclTmpl(type)
 	exec '0r ~/.vim/tmpl/' . a:type
