@@ -209,9 +209,9 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 5+ unmute") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 5- unmute") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q set Master toggle") end),
-    awful.key({ "Shift", "Control", "Mod1" }, "space", function () awful.util.spawn("mocp --toggle-pause") end),
-    awful.key({ "Shift", "Control", "Mod1" }, "Right", function () awful.util.spawn("mocp --next") end),
-    awful.key({ "Shift", "Control", "Mod1" }, "Left", function () awful.util.spawn("mocp --previous") end),
+    awful.key({ "Shift", "Control", "Mod1" }, "space", function () awful.util.spawn("/home/mkelly/install/bin/mocp --toggle-pause") end),
+    awful.key({ "Shift", "Control", "Mod1" }, "Right", function () awful.util.spawn("/home/mkelly/install/bin/mocp --next") end),
+    awful.key({ "Shift", "Control", "Mod1" }, "Left", function () awful.util.spawn("/home/mkelly/install/bin/mocp --previous") end),
 
     awful.key({ modkey,           }, "backslash", function () awful.util.spawn(screenlock) end),
 

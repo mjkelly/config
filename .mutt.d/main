@@ -47,6 +47,8 @@ hdr_order From Date: From: Reply-To: Organization: To: Cc: Subject: User-Agent: 
 
 mailboxes !
 mailboxes =mocha
+mailboxes =alerts
+mailboxes =tor
 
 set from='Michael Kelly <m@michaelkelly.org>'
 alternates "@michaelkelly.org"

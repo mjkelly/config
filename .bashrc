@@ -74,6 +74,7 @@ export BROWSER=firefox
 export GREP_OPTIONS="--color=auto"
 
 alias m=mutt
+alias moc='/home/mkelly/install/bin/mocp ~/playlist.m3u'
 
 set -o ignoreeof
 set -o vi
