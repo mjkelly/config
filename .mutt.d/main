@@ -1,30 +1,32 @@
 # Main mutt config.
 # Michael Kelly
-# Sat May 21 17:08:48 EDT 2011
+# Wed Aug 17 21:14:42 EDT 2011
 # vim: filetype=muttrc
 
 set alias_file="~/.mutt.d/alias.localonly"
 set mailcap_path="~/.mutt.d/mailcap"
-set folder="~/Maildir"
-set mbox="=Read"
-set spoolfile="=Inbox"
-set postponed="=Postponed"
-fcc-hook .* "=Outbox"
-set record="=Outbox"
+set folder="imaps://imap.gmail.com:993"
+set spoolfile="+INBOX"
+set postponed="+[Gmail]/Drafts"
+set trash="imaps://imap.gmail.com/[Gmail]/Trash"
+set header_cache="~/.mutt-header-cache"
+set move=no
+set imap_keepalive=900
+
 set ispell="/usr/bin/aspell -c"
 set sendmail="/usr/bin/msmtp"
 set signature="~/.signature"
 set editor="vim -c 'source ~/.vimrc.text'"
 
-unset help
+set help=no
+set markers=no
 set copy=yes
 set use_from=yes
 set envelope_from=yes
-set fast_reply
-set move=ask-yes
+set fast_reply=yes
 set sleep_time=0
 set sort=threads
-unset collapse_unread
+set collapse_unread=no
 set include=yes
 set postpone=ask-yes
 set wait_key=no
@@ -45,17 +47,12 @@ unignore x-mailing-list x-gpg-key x-pgp-key x-spam-score x-bogosity
 
 hdr_order From Date: From: Reply-To: Organization: To: Cc: Subject: User-Agent: X-.*:
 
-mailboxes !
-mailboxes =mocha
-mailboxes =alerts
-mailboxes =tor
-
 set from='Michael Kelly <m@michaelkelly.org>'
 alternates "@michaelkelly.org"
-
 
 source ~/.mutt.d/bind
 source ~/.mutt.d/lists.localonly
 source ~/.mutt.d/pgp
 source ~/.mutt.d/color
 source ~/.mutt.d/alias.localonly
+source ~/.mutt.d/imap.localonly
