@@ -10,14 +10,15 @@ set spoolfile="+INBOX"
 set postponed="+[Gmail]/Drafts"
 set trash="imaps://imap.gmail.com/[Gmail]/Trash"
 set header_cache="~/.mutt-header-cache"
-set move=no
 set imap_keepalive=900
-
-set ispell="/usr/bin/aspell -c"
+set mail_check=30
+set timeout=30
 set sendmail="/usr/bin/msmtp"
 set signature="~/.signature"
 set editor="vim -c 'source ~/.vimrc.text'"
+set index_format="%4C %Z %[%R %b %d] %-15.15L %2M %s"
 
+set move=no
 set help=no
 set markers=no
 set copy=yes
