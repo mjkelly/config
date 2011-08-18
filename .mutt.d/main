@@ -17,6 +17,7 @@ set sendmail="/usr/bin/msmtp"
 set signature="~/.signature"
 set editor="vim -c 'source ~/.vimrc.text'"
 set index_format="%4C %Z %[%R %b %d] %-15.15L %2M %s"
+set imap_passive=no
 
 set move=no
 set help=no
@@ -45,8 +46,6 @@ unignore organization organisation
 unignore posted-to reply-to
 unignore user-agent
 unignore x-mailing-list x-gpg-key x-pgp-key x-spam-score x-bogosity
-
-hdr_order From Date: From: Reply-To: Organization: To: Cc: Subject: User-Agent: X-.*:
 
 set from='Michael Kelly <m@michaelkelly.org>'
 alternates "@michaelkelly.org"
