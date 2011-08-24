@@ -1,5 +1,6 @@
 text/html; /usr/bin/lynx -force_html -dump %s; copiousoutput
 image/jpeg; /usr/bin/qiv %s
+image/jpg; /usr/bin/qiv %s
 image/pjpeg; /usr/bin/qiv %s
 image/gif; /usr/bin/qiv %s
 image/png; /usr/bin/qiv %s
