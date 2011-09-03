@@ -1,9 +1,0 @@
-# Rules to run before spam filtering.
-# Michael Kelly
-# Sat May 21 17:58:23 EDT 2011
-# vim: ft=procmail
-
-# spam caught by some server-side SpamAssassin
-:0:
-* ^Subject:.*\*\*\*SPAM\*\*\*
-/dev/null
