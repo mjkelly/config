@@ -1,4 +1,7 @@
-My configs, for all the world to see -- but particularly, for me when I'm in a
-strange new environment.
+My configs, for setting up new personal machines.
 
-Be aware of $USER$, $EMAIL$, and $PASSWORD$ variables when using these configs.
+deploy.sh is a convenient deployment script.
+
+Some configs reference excluded files ending in ".localonly". These contain
+authentication information, etc, and are .gitignore'd. They must be manually
+added.

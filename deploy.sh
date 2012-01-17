@@ -12,8 +12,13 @@
 
 # File used to mark directories we should recurse into.
 MAGIC_OVERLAY_FILE='overlay-directory'
+
 # So we don't copy this script.
 OFFICIAL_NAME="$(basename $0)"
+
+TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
+
+# -----------------------------------------------------------------
 
 # Deploys all the files in the given directory. Tries to skip this script and
 # other magic files.
@@ -21,6 +26,10 @@ function deploy_dir() {
   local target=$1
   local path=$2
   echo "DIR: $path"
+
+  if [[ (! -d "$target") && "$MODE" == "real" ]]; then
+    mkdir -- "$target"
+  fi
 
   local files=($path/.* $path/*)
   for f in "${files[@]}"; do
@@ -39,9 +48,6 @@ function deploy_dir() {
     # Recurse into overlay directories. Otherwise, treat directories the same as
     # files.
     if [[ -d "$f" && -f "$f/$MAGIC_OVERLAY_FILE" ]]; then
-      if [[ (! -d "$target/$base_f") && "$MODE" == "real" ]]; then
-        mkdir -- "$target/$base_f"
-      fi
       deploy_dir "$target/$base_f" "$f"
     else
       deploy_file "$target" "$f"
@@ -66,10 +72,10 @@ function deploy_file() {
   fi
 }
 
+# -----------------------------------------------------------------
 
 ACTION=$1
 CONF_DIR="$PWD"
-TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 
 if [[ "$ACTION" == "real" ]]; then
   TARGET_DIR="$HOME"
