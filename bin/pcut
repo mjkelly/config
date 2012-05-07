@@ -1,13 +1,21 @@
 #!/usr/bin/perl
+# A convenience program like 'cut' that uses runs of any whitespace character
+# as the separator.
+#
+# Michael Kelly. 2012. Public domain.
 
 if (!@ARGV) {
-	die "Usage: $0 field\n";
+	die "Usage: $0 field[...]\n";
 }
 
-my $f = shift(@ARGV);
+my @fields = @ARGV;
 
-while (<>) {
+while (<STDIN>) {
 	chomp;
-	my @fields = split(/\s+/);
-	print $fields[$f+1] . "\n";
+	my @line = split(/\s+/);
+  my @to_print = ();
+  for my $i (@fields) {
+    push(@to_print, $line[int($i)]);
+  }
+  print join(' ', @to_print) . "\n";
 }
