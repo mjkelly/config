@@ -180,5 +180,9 @@ if !exists("autocmds")
 	au BufEnter *.go vmap ,c !boxes -d c-cmt<CR>
 	au BufEnter *.go nmap ,C !!boxes -d c-cmt -r<CR>
 	au BufEnter *.go vmap ,C !boxes -d c-cmt -r<CR>
+	au BufEnter *.hs nmap ,c !!boxes -d ada-cmt<CR>
+	au BufEnter *.hs vmap ,c !boxes -d ada-cmt<CR>
+	au BufEnter *.hs nmap ,C !!boxes -d ada-cmt -r<CR>
+	au BufEnter *.hs vmap ,C !boxes -d ada-cmt -r<CR>
 endif
 
