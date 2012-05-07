@@ -7,16 +7,21 @@
 
 # (1) capslock is another control, (2) double-shift moves between us, us-intl,
 # and phonetic russian keyboards.
-setxkbmap -option "ctrl:nocaps,grp:shifts_toggle" 'us(basic),us(intl),ru(phonetic)'
+/usr/bin/setxkbmap -option "ctrl:nocaps,grp:shifts_toggle" 'us(basic),us(intl),ru(phonetic)'
 
 # touchpad shit for the macbook.
-synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298
+#synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298
 
-xscreensaver -nosplash &
-gnome-power-manager &
-nm-applet &
+# These should apply to all machines:
+
+/usr/bin/xscreensaver -nosplash &
+/usr/bin/nm-applet &
 caffeine >/dev/null 2>&1 &
 # coords are NYC
 gtk-redshift -l 40.732:-73.986 &
+
+# These probably only apply to a laptop:
+
+#gnome-power-manager &
 
 exec /usr/bin/awesome
