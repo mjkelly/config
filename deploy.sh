@@ -34,7 +34,7 @@ function deploy_dir() {
   local files=($path/.* $path/*)
   for f in "${files[@]}"; do
     # We don't copy a specific list of files.
-    if [[ "$f" == "$CONF_DIR/README" || "$f" == "$CONF_DIR/$OFFICIAL_NAME" ]]; then
+    if [[ "$f" == "$CONF_DIR/README" || "$f" == "$CONF_DIR/$OFFICIAL_NAME" || "$f" == "$CONF_DIR/.git" ]]; then
       echo "SKIP: $f"
       continue
     fi
