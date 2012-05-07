@@ -1,0 +1,9 @@
+#!/usr/bin/perl
+# -----------------------------------------------------------------
+# pexpr
+# Use eval() to make a Perl-powered, better, expr(1).
+# Michael Kelly
+# Mon Sep  8 13:49:09 PDT 2003
+# -----------------------------------------------------------------
+
+print eval("@ARGV") . "\n";
