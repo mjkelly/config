@@ -69,9 +69,9 @@ mycpuwidget:set_color("#77BB77")
 vicious.register(mycpuwidget, vicious.widgets.cpu, "$1", 1)
 
 mynetwidget_up = widget({ type = "textbox" })
-mynetwidget_up.width = 45
+mynetwidget_up.width = 55
 mynetwidget_down = widget({ type = "textbox" })
-mynetwidget_down.width = 45
+mynetwidget_down.width = 55
 
 if os.execute("ifconfig wlan0 >/dev/null 2>&1") == 0 then
     vicious.register(mynetwidget_up, vicious.widgets.net,

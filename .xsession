@@ -12,7 +12,7 @@
 /usr/bin/xsetroot -cursor_name left_ptr
 
 # touchpad shit for the macbook.
-#synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298
+synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298
 
 # These should apply to all machines:
 
