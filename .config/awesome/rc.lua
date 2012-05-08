@@ -54,15 +54,6 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- {{{ Menu
--- Create a laucher widget and a main menu
-myawesomemenu = {
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awful.util.getdir("config") .. "/rc.lua" },
-   { "restart", awesome.restart },
-   { "quit", awesome.quit }
-}
-
 -- {{{ Wibox
 -- Create a textclock widget
 mytextclock = awful.widget.textclock({ align = "right" })
@@ -161,7 +152,7 @@ for s = 1, screen.count() do
         s == 1 and mytextclock or nil,
         s == 1 and mynetwidget_down or nil,
         s == 1 and mynetwidget_up or nil,
-        s == 1 and mycpuwidget or nil,
+        s == 1 and mycpuwidget.widget or nil,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
