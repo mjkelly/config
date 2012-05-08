@@ -74,11 +74,15 @@ mynetwidget_down = widget({ type = "textbox" })
 mynetwidget_down.width = 45
 
 if os.execute("ifconfig wlan0 >/dev/null 2>&1") == 0 then
-    vicious.register(mynetwidget_up, vicious.widgets.net, string.format("<span color='#BB7777'>%sk</span>", "${wlan0 up_kb}"), 2)
-    vicious.register(mynetwidget_down, vicious.widgets.net, string.format("<span color='#77BB77'>%sk</span>", "${wlan0 down_kb}"), 2)
+    vicious.register(mynetwidget_up, vicious.widgets.net,
+                     "<span color='#BB7777'>↑${wlan0 up_kb}k</span>", 2)
+    vicious.register(mynetwidget_down, vicious.widgets.net,
+                     "<span color='#77BB77'>↓${wlan0 down_kb}k</span>", 2)
 elseif os.execute("ifconfig eth0 >/dev/null 2>&1") == 0 then
-    vicious.register(mynetwidget_up, vicious.widgets.net, string.format("<span color='#BB7777'>%sk</span>", "${eth0 up_kb}"), 2)
-    vicious.register(mynetwidget_down, vicious.widgets.net, string.format("<span color='#77BB77'>%sk</span>", "${eth0 down_kb}"), 2)
+    vicious.register(mynetwidget_up, vicious.widgets.net,
+                     "<span color='#BB7777'>↑${eth0 up_kb}k</span>", 2)
+    vicious.register(mynetwidget_down, vicious.widgets.net,
+                     "<span color='#77BB77'>↓${eth0 down_kb}k</span>", 2)
 end
 
 -- Create a wibox for each screen and add it
