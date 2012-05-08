@@ -7,9 +7,6 @@ require("beautiful")
 -- Notification library
 require("naughty")
 
--- Load Debian menu entries
-require("debian.menu")
-
 require("vicious")
 
 -- {{{ Variable definitions
@@ -65,29 +62,6 @@ myawesomemenu = {
    { "restart", awesome.restart },
    { "quit", awesome.quit }
 }
-
--- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
---                                     { "Debian", debian.menu.Debian_menu.Debian },
---                                     { "open terminal", terminal }
---                                   }
---                         })
-
-mymainmenu = awful.menu({ items = {
-                                    { "terminal", terminal },
-                                    { "firefox", "/usr/bin/firefox" },
-                                    { "chrome", "/usr/bin/google-chrome --enable-plugins" },
-                                    { "pidgin", "/usr/bin/pidgin" },
-                                    { "deadbeef", "/usr/bin/deadbeef" },
-                                    { "mnemosyne", "/usr/bin/mnemosyne" },
-                                    { "SUSPEND", "gksudo pm-suspend" },
-                                    { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "Debian", debian.menu.Debian_menu.Debian },
-                                  }
-                        })
-
-mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
-                                     menu = mymainmenu })
--- }}}
 
 -- {{{ Wibox
 -- Create a textclock widget
@@ -179,16 +153,15 @@ for s = 1, screen.count() do
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
-            --mylauncher,
             mytaglist[s],
             mypromptbox[s],
             layout = awful.widget.layout.horizontal.leftright
         },
         mylayoutbox[s],
-        mytextclock,
-        mynetwidget_down,
-        mynetwidget_up,
-        mycpuwidget,
+        s == 1 and mytextclock or nil,
+        s == 1 and mynetwidget_down or nil,
+        s == 1 and mynetwidget_up or nil,
+        s == 1 and mycpuwidget or nil,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -209,9 +182,6 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 5+ unmute") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 5- unmute") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q set Master toggle") end),
-    -- awful.key({ "Shift", "Control", "Mod1" }, "space", function () awful.util.spawn("/home/mkelly/install/bin/mocp --toggle-pause") end),
-    -- awful.key({ "Shift", "Control", "Mod1" }, "Right", function () awful.util.spawn("/home/mkelly/install/bin/mocp --next") end),
-    -- awful.key({ "Shift", "Control", "Mod1" }, "Left", function () awful.util.spawn("/home/mkelly/install/bin/mocp --previous") end),
 
     awful.key({ modkey,           }, "backslash", function () awful.util.spawn(screenlock) end),
 
@@ -229,7 +199,6 @@ globalkeys = awful.util.table.join(
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Layout manipulation
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end),
@@ -350,19 +319,13 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { tag = tags[1][2] } },
 }
 -- }}}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.add_signal("manage", function (c, startup)
-    -- Add a titlebar
-    -- awful.titlebar.add(c, { modkey = modkey })
-
-    -- Enable sloppy focus
+    -- Enable sloppy focus (focus follows mouse)
     c:add_signal("mouse::enter", function(c)
         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
             and awful.client.focus.filter(c) then
