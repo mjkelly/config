@@ -12,7 +12,8 @@
 /usr/bin/xsetroot -cursor_name left_ptr
 
 # touchpad shit for the macbook.
-synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298
+synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298 \
+  VertEdgeScroll=0 ClickFinger3=2
 
 # These should apply to all machines:
 
@@ -21,9 +22,5 @@ synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298
 caffeine >/dev/null 2>&1 &
 # coords are NYC
 gtk-redshift -l 40.732:-73.986 &
-
-# These probably only apply to a laptop:
-
-#gnome-power-manager &
 
 exec /usr/bin/awesome
