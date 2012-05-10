@@ -76,7 +76,7 @@ local battery_file = io.open("/proc/acpi/battery/" .. battery)
 if battery_file then
   io.close(battery_file)
   mybattwidget = widget({ type = "textbox" })
-  mybattwidget.width = 30
+  mybattwidget.width = 32
   mybattwidget.background_color = "#222222"
   vicious.register(mybattwidget, vicious.widgets.bat,
       "<span color='#7777BB' size='large'>$1</span><span color='#7777BB'>$2</span>", 61, battery)
