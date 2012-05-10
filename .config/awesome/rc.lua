@@ -62,11 +62,25 @@ mytextclock = awful.widget.textclock({ align = "right" })
 mysystray = widget({ type = "systray" })
 
 mycpuwidget = awful.widget.graph()
-mycpuwidget:set_width(45)
+mycpuwidget:set_width(20)
 mycpuwidget:set_background_color("#222222")
 mycpuwidget:set_color("#77BB77")
 
 vicious.register(mycpuwidget, vicious.widgets.cpu, "$1", 1)
+
+-- Add a battery widget, but only if we think the battery exists.
+-- (This is a reasonable test that we're on a laptop.)
+battery = "BAT0"
+mybattwidget = nil
+local battery_file = io.open("/proc/acpi/battery/" .. battery)
+if battery_file then
+  io.close(battery_file)
+  mybattwidget = widget({ type = "textbox" })
+  mybattwidget.width = 30
+  mybattwidget.background_color = "#222222"
+  vicious.register(mybattwidget, vicious.widgets.bat,
+      "<span color='#7777BB' size='large'>$1</span><span color='#7777BB'>$2</span>", 60, battery)
+end
 
 mynetwidget_up = widget({ type = "textbox" })
 mynetwidget_up.width = 55
@@ -154,6 +168,7 @@ for s = 1, screen.count() do
         },
         mylayoutbox[s],
         s == 1 and mytextclock or nil,
+        s == 1 and mybattwidget or nil,
         s == 1 and mynetwidget_down or nil,
         s == 1 and mynetwidget_up or nil,
         s == 1 and mycpuwidget.widget or nil,
@@ -177,6 +192,8 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 5+ unmute") end),
     awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 5- unmute") end),
     awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q set Master toggle") end),
+    awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight - 20") end),
+    awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight + 20") end),
 
     awful.key({ modkey,           }, "backslash", function () awful.util.spawn(screenlock) end),
 
