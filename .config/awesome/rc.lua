@@ -26,6 +26,7 @@ screenlock = "xscreensaver-command -lock"
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
+altkey = "Mod1"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
@@ -195,6 +196,8 @@ globalkeys = awful.util.table.join(
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight - 20") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight + 20") end),
 
+    awful.key({ modkey, altkey    }, "l", function () awful.util.spawn(screenlock) end),
+    -- This one is just for muscle-memory backwards compatibility.
     awful.key({ modkey,           }, "backslash", function () awful.util.spawn(screenlock) end),
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
