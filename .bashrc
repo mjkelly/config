@@ -44,10 +44,8 @@ set -o vi
 
 ulimit -c 10000
 
-PATH=$PATH:~/bin
-# for ruby gems. meh.
-PATH=$PATH:~/.gem/ruby/1.8/bin
-export PATH
+export GOROOT=$HOME/go
+export PATH=$PATH:~/bin:$GOROOT/bin
 
 export PS1='[$?]\u@\h:\w$ '
 
