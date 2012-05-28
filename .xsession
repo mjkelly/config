@@ -12,8 +12,9 @@
 /usr/bin/xsetroot -cursor_name left_ptr
 
 # touchpad shit for the macbook.
+# VertEdgeScroll=0 for macbook, =1 for thinkpad.
 synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298 \
-  VertEdgeScroll=0 ClickFinger3=2
+  VertEdgeScroll=1 ClickFinger3=2
 
 # These should apply to all machines:
 
