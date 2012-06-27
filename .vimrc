@@ -37,8 +37,8 @@ set viminfo='100,<500,s10,h
 source ~/.vim/sparc.vim
 source ~/.vim/yanktmp.vim
 
-map <C-J> :next<CR>
-map <C-K> :previous<CR>
+map <C-J> :bnext<CR>
+map <C-K> :bprevious<CR>
 
 map <C-H> :nohls<CR>
 
