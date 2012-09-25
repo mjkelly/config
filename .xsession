@@ -8,8 +8,7 @@
 # (1) capslock is another control, (2) double-shift moves between us, us-intl,
 # and phonetic russian keyboards.
 /usr/bin/setxkbmap -option "ctrl:nocaps,grp:shifts_toggle" 'us(basic),us(intl),ru(phonetic)'
-# Use a regular cursor image.
-/usr/bin/xsetroot -cursor_name left_ptr
+/usr/bin/xrdb merge ~/.Xdefaults
 
 # touchpad shit for the macbook.
 # VertEdgeScroll=0 for macbook, =1 for thinkpad.
