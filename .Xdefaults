@@ -18,3 +18,5 @@
 *color13: #ff00ff
 *color14: #00ffff
 *color15: #ffffff
+Rxvt*scrollBar: false
+Rxvt*loginShell: true

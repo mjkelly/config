@@ -15,7 +15,7 @@ require("vicious")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/default-mjk/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "urxvt -ls +sb"
+terminal = "urxvt"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
 screenlock = "xscreensaver-command -lock"
