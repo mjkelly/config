@@ -1,8 +1,9 @@
-! From the gnome-terminal XTerm theme
-*background: #222222
+! From the gnome-terminal XTerm theme, with a more vibrant red.
+! Custom background.
+*background: #202020
 *foreground: #d3d7cf
 *color0: #000000
-*color1: #cd0000
+*color1: #dd0000
 *color2: #00cd00
 *color3: #cdcd00
 *color4: #1e90ff
