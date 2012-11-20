@@ -18,6 +18,8 @@ OFFICIAL_NAME="$(basename $0)"
 
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 
+PACKAGE_FILE="initial_install_packages"
+
 # -----------------------------------------------------------------
 
 # Deploys all the files in the given directory. Tries to skip this script and
@@ -72,6 +74,16 @@ function deploy_file() {
   fi
 }
 
+function install_packages() {
+  local package_list=$1
+  local packages="$(cat $package_list)"
+  local cmd="sudo aptitude -y"
+  if [[ "$MODE" != "real" ]]; then
+    cmd="echo Would run: $cmd"
+  fi
+  $cmd install $packages
+}
+
 # -----------------------------------------------------------------
 
 ACTION=$1
@@ -94,4 +106,5 @@ else
   exit 2
 fi
 
+install_packages "$CONF_DIR/$PACKAGE_FILE"
 deploy_dir "$TARGET_DIR" "$CONF_DIR"
