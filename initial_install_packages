@@ -3,5 +3,6 @@ boxes
 git
 pmount
 qiv
+sshfs
 tmux
 vim
