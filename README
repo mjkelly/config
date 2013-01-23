@@ -10,5 +10,4 @@ Some configs contain $USERNAME$, $PASSWORD$, and other pseudo-variables. You
 must replace those manually.
 
 The 'initial_install_packages' file contains a list of packages to be installed
-(deploy.sh uses aptitude to install them). Each package is separated by
-whitespace; there is no facility for comments.
+(deploy.sh uses aptitude to install them). Lines beginning with '#' are comments.
