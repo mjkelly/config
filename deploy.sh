@@ -77,7 +77,7 @@ function deploy_file() {
 function install_packages() {
   local package_list=$1
   local packages="$(cat $package_list)"
-  local cmd="sudo aptitude -y"
+  local cmd="sudo aptitude"
   if [[ "$MODE" != "real" ]]; then
     cmd="echo Would run: $cmd"
   fi
@@ -92,19 +92,28 @@ CONF_DIR="$PWD"
 if [[ "$ACTION" == "real" ]]; then
   TARGET_DIR="$HOME"
   MODE="real"
+  deploy_dir "$TARGET_DIR" "$CONF_DIR"
 elif [[ "$ACTION" == "test" ]]; then
   TARGET_DIR="$HOME/test"
   MODE="real"
+  deploy_dir "$TARGET_DIR" "$CONF_DIR"
 elif [[ "$ACTION" == "dry" ]]; then
   echo
   echo "*** Dry-run mode. Run '$0 real' to run for real. ***"
   echo
   TARGET_DIR="$HOME"
   MODE="test"
+  deploy_dir "$TARGET_DIR" "$CONF_DIR"
+elif [[ "$ACTION" == "dry-packages" ]]; then
+  echo
+  echo "*** Dry-run mode. Run '$0 packages' to run for real. ***"
+  echo
+  MODE="test"
+  install_packages "$CONF_DIR/$PACKAGE_FILE"
+elif [[ "$ACTION" == "packages" ]]; then
+  MODE="real"
+  install_packages "$CONF_DIR/$PACKAGE_FILE"
 else
-  echo "USAGE: $0 test|real|dry"
+  echo "USAGE: $0 test|real|dry|packages|dry-packages"
   exit 2
 fi
-
-install_packages "$CONF_DIR/$PACKAGE_FILE"
-deploy_dir "$TARGET_DIR" "$CONF_DIR"
