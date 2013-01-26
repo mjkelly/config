@@ -71,7 +71,7 @@ deploy_file () {
   local dest="$target/$base_file"
   local dest_backup="$target/$base_file.bak-$TIMESTAMP"
 
-  echo "FILE: $file --> $dest"
+  echo "LINK: $file --> $dest"
   if [ "$MODE" = "real" ]; then
     if [ -e "$dest" ]; then
       mv -- "$dest" "$dest_backup"
