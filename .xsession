@@ -21,6 +21,6 @@ synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298 \
 /usr/bin/nm-applet &
 caffeine >/dev/null 2>&1 &
 # coords are NYC
-gtk-redshift -l 40.732:-73.986 &
+#gtk-redshift -l 40.732:-73.986 &
 
 exec /usr/bin/awesome
