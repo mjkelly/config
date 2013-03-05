@@ -1,0 +1,10 @@
+#!/bin/bash
+# Stops extends the screen to an external monitor.
+# Specifically for my work ThinkPad to mirror to my home monitor. I should
+# remove some of the hardcoded values.
+#
+# Michael Kelly
+# Tue Mar  5 13:10:34 EST 2013
+
+/usr/bin/xrandr --output LVDS1 --mode 1280x800  --pos 0x0 \
+                --output VGA1 --off
