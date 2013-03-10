@@ -70,10 +70,10 @@ mycpuwidget:set_color("#77BB77")
 vicious.register(mycpuwidget, vicious.widgets.cpu, "$1", 1)
 
 -- Add a battery widget, but only if we think the battery exists.
--- (This is a reasonable test that we're on a laptop.)
+-- (This is a hacky way to test if we're on a laptop.)
 battery = "BAT0"
 mybattwidget = nil
-local battery_file = io.open("/proc/acpi/battery/" .. battery)
+local battery_file = io.open("/sys/class/power_supply/" .. battery)
 if battery_file then
   io.close(battery_file)
   mybattwidget = widget({ type = "textbox" })
