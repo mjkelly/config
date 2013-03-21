@@ -40,7 +40,6 @@ export EDITOR=vim
 export BROWSER=firefox
 
 set -o ignoreeof
-set -o vi
 
 ulimit -c 10000
 
