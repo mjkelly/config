@@ -4,14 +4,29 @@
 --
 
 import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
+
+myManageHook = composeAll
+    [ className =? "Gimp"      --> doFloat
+    , className =? "Vncviewer" --> doFloat
+    ]
 
 main = do
+    xmproc <- spawnPipe "xmobar"
     xmonad $ defaultConfig
         { modMask            = mod4Mask
-        , terminal           = "urxvt -ls -bg black -fg gray +sb"
-        , borderWidth        = 1
-        , normalBorderColor  = "#cccccc"
-        , focusedBorderColor = "#cd8b00" } `additionalKeys`
-        [ ((mod4Mask .|. shiftMask, xK_z), spawn "/usr/bin/xscreensaver-command -lock")
+        , terminal           = "urxvt"
+        , manageHook = manageDocks <+> myManageHook -- make sure to include myManageHook definition from above
+                        <+> manageHook defaultConfig
+        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+        , logHook = dynamicLogWithPP $ xmobarPP
+                        { ppOutput = hPutStrLn xmproc
+                        , ppTitle = xmobarColor "green" "" . shorten 50
+                        }
+        } `additionalKeys`
+        [ ((mod4Mask, xK_backslash), spawn "/usr/bin/xscreensaver-command -lock")
         ]
