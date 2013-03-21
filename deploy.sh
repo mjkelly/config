@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------
 # deploy.sh -- Deploys the files in the configuration directory.
 #
-# Tested with dash 0.5.7.
+# Tested with dash 0.5.7 and public domain ksh 5.2.14.
 #
 # Copyright 2012 Michael Kelly (michael@michaelkelly.org)
 #
