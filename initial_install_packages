@@ -2,9 +2,9 @@
 # Beware that some of these packages require X.
 awesome
 boxes
+cifs-utils
 git
 pmount
 qiv
-sshfs
 tmux
 vim
