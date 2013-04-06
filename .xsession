@@ -20,8 +20,11 @@
 
 # Touchpad configuration for laptops:
 # VertEdgeScroll=0 for macbook, =1 for thinkpad.
+#synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298 \
+#  VertEdgeScroll=0 ClickFinger3=2 HorizHysteresis         = 50
 synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298 \
-  VertEdgeScroll=0 ClickFinger3=2
+  VertEdgeScroll=0 HorizHysteresis=50 VertHysteresis=50
+
 
 # These should apply to all machines:
 
