@@ -18,10 +18,19 @@
 /usr/bin/setxkbmap -option "ctrl:nocaps,grp:shifts_toggle" 'us(basic),us(intl),ru(phonetic)'
 /usr/bin/xrdb merge ~/.Xdefaults
 
-# Touchpad configuration for laptops:
-# VertEdgeScroll=0 for macbook, =1 for thinkpad.
-# synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298 \
-#   VertEdgeScroll=1 ClickFinger3=2
+# Touchpad configuration for laptops.
+# Some optional settings:
+# 2 fingers down is right-click:
+#   ClickFinger2=3
+# 3 fingers down is middle-click:
+#   ClickFinger3=2
+# VertEdgeScroll=1
+synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298  \
+  VertEdgeScroll=0 \
+  ClickFinger2=3 \
+  HorizHysteresis=50 VertHysteresis=50 CoastingSpeed=0 \
+  RightButtonAreaLeft=0 RightButtonAreaRight=0 RightButtonAreaTop=0 RightButtonAreaBottom=0
+
 
 # These should apply to all machines:
 
