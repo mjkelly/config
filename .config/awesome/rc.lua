@@ -190,9 +190,12 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
-    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 5+ unmute") end),
-    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 5- unmute") end),
-    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -q set Master toggle") end),
+    awful.key({ }, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer -q set Master 5+") end),
+    awful.key({ }, "XF86AudioLowerVolume", function () awful.util.spawn("amixer -q set Master 5-") end),
+    -- Must set -D pulse to correctly mute and unmute. It's not necesary for
+    -- changing volume, though. More info:
+    -- http://askubuntu.com/questions/118675/mute-key-mutes-alsa-and-pulseaudio-but-unmutes-only-alsa
+    awful.key({ }, "XF86AudioMute", function () awful.util.spawn("amixer -D pulse -q set Master toggle") end),
     awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight - 20") end),
     awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight + 20") end),
 
