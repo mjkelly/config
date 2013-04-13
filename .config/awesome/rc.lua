@@ -80,7 +80,7 @@ if battery_file then
   mybattwidget.width = 32
   mybattwidget.background_color = "#222222"
   vicious.register(mybattwidget, vicious.widgets.bat,
-      "<span color='#7777BB' size='large'>$1</span><span color='#7777BB'>$2</span>", 61, battery)
+      "<span color='#1BDDE0' size='large'>$1</span><span color='#1BDDE0'>$2</span>", 61, battery)
 end
 
 mynetwidget_up = widget({ type = "textbox" })
