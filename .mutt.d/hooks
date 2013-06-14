@@ -1,0 +1,7 @@
+# Fri Jun 14 01:49:53 EDT 2013
+# Default settings for anything that changes between folders.
+
+# =GV is special because replies there send text messages.
+
+folder-hook . source ~/.mutt.d/hooks.main
+folder-hook =GV$ source ~/.mutt.d/hooks.gv

@@ -14,10 +14,10 @@ set imap_keepalive=900
 set mail_check=30
 set timeout=30
 set sendmail="/usr/bin/msmtp"
-set signature="~/.signature"
 set editor="vim -c 'source ~/.vimrc.text'"
 set index_format="%4C %Z %[%R %b %d] %-15.15L %2M %s"
 set imap_passive=no
+# signature set in hooks.*
 
 set move=no
 set help=no
@@ -29,11 +29,11 @@ set fast_reply=yes
 set sleep_time=0
 set sort=threads
 set collapse_unread=no
-set include=yes
 set postpone=ask-yes
 set wait_key=no
 set pager_stop=yes
 set pipe_decode=yes
+# include set in hooks.*
 
 # Choose plaintext mail formats if they are available; auto-view html if
 # necessary
@@ -57,3 +57,4 @@ source ~/.mutt.d/pgp
 source ~/.mutt.d/color
 source ~/.mutt.d/alias.localonly
 source ~/.mutt.d/imap.localonly
+source ~/.mutt.d/hooks
