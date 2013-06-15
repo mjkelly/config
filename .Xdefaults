@@ -20,3 +20,4 @@ Rxvt*color14: #00ffff
 Rxvt*color15: #ffffff
 Rxvt*scrollBar: false
 Rxvt*loginShell: true
+URxvt.urgentOnBell: true
