@@ -7,12 +7,12 @@
 # - Empty lines and lines beginning with a '#' are ignored.
 
 # Please provide your Jabber (XMPP) identifier:
-set jid = $USER$
+set jid = m@michaelkelly.org
 
 # If password is not given, it will be interactively asked for.
 # Note: if the password contains leading or trailing spaces, you must
 # enclose it with quotes: set password = " example password "
-set password = $PASSWORD$
+set password = jyzvksmmxewcfpgp
 
 # You can provide a server name if you want mcabber to connect
 # to a specific server.
@@ -305,7 +305,7 @@ set beep_on_message = 1
 # the status when it is "available" (online) or "free_for_chat".
 # See 'message_autoaway' below.
 # 10 mins
-set autoaway = 300
+set autoaway = 600
 
 # Message blocking
 # Set 'block_unsubscribed' to 1 if you want to block (drop) incoming
