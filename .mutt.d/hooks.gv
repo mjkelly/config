@@ -4,3 +4,4 @@
 
 set signature=""
 set include=no
+unset pgp_autosign

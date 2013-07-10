@@ -21,7 +21,7 @@ set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secr
 #	'auto-key-retrieve' is set in GPG's config file.
 set pgp_getkeys_command="gpg --recv-keys %r 2> /dev/null"
 
-set pgp_autosign
+# set pgp_autosign is in hooks.*
 unset pgp_autoencrypt
 set pgp_create_traditional=no
 set pgp_replyencrypt
