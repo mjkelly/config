@@ -94,13 +94,30 @@ fun! ProcessHeader()
   exec ':silent 0'
 endfunction
 
+" Comment and uncomment single lines and ranges of text.
+fun! Comment()
+  exec ":.!boxes -d " . g:boxes_comment_type
+endfunction
+
+fun! Uncomment()
+  exec ":.!boxes -r -d " . g:boxes_comment_type
+endfunction
+
+fun! CommentRange() range
+  exec ":'<,'>!boxes -d " . g:boxes_comment_type
+endfunction
+
+fun! UncommentRange() range
+  exec ":'<,'>!boxes -r -d " . g:boxes_comment_type
+endfunction
+
+
 call Use2Spaces()
-"call Use4Spaces()
 
 " **********************************************************
-" * autoloaded stuff                                       *
+" Auto-commands, which load when creating/entering/leaving *
+" buffers.                                                 *
 " **********************************************************
-
 if !exists("autocmds")
   let autocmds = 1
 
@@ -110,8 +127,7 @@ if !exists("autocmds")
     \   exe "normal! g'\"" |
     \ endif
 
-  au BufEnter *.rhtml set syn=eruby
-  au BufEnter *.rhtm set syn=eruby
+  " Different filetypes use different kinds of indentation.
   au BufEnter *.lsp :call Use2Spaces()
   au BufEnter *.ml :call Use2Spaces()
   au BufEnter Makefile :call UseTabs()
@@ -122,9 +138,7 @@ if !exists("autocmds")
   au BufEnter *.email source ~/.vimrc.text
   au BufNewFile,BufRead *.txt :source ~/.vimrc.text
 
-  " -------------------------------------------
   " auto-load templates for some filetypes
-  " -------------------------------------------
   au BufNewFile *.c	:call InclTmpl('c')
   au BufNewFile *.h	:call InclTmpl('h')
   au BufNewFile *.hpp	:call InclTmpl('hpp')
@@ -138,39 +152,17 @@ if !exists("autocmds")
   au BufReadPost *.txt.gpg	:syntax off
 
   " Configure boxes(1) shortcuts..
-  " Putting a variable on the right-hand side of a map command is not trivial,
-  " so we write it out longhand.
-  au BufEnter *                nmap ,c !!boxes -d pound-cmt<CR>
-  au BufEnter *                vmap ,c !boxes -d pound-cmt<CR>
-  au BufEnter *                nmap ,C !!boxes -d pound-cmt -r<CR>
-  au BufEnter *                vmap ,C !boxes -d pound-cmt -r<CR>
-  au BufEnter *.html           nmap ,c !!boxes -d html-cmt<CR>
-  au BufEnter *.html           vmap ,c !boxes -d html-cmt<CR>
-  au BufEnter *.html           nmap ,C !!boxes -d html-cmt -r<CR>
-  au BufEnter *.html           vmap ,C !boxes -d html-cmt -r<CR>
-  au BufEnter *.[chly],*.[pc]c nmap ,c !!boxes -d c-cmt<CR>
-  au BufEnter *.[chly],*.[pc]c vmap ,c !boxes -d c-cmt<CR>
-  au BufEnter *.[chly],*.[pc]c nmap ,C !!boxes -d c-cmt -r<CR>
-  au BufEnter *.[chly],*.[pc]c vmap ,C !boxes -d c-cmt -r<CR>
-  au BufEnter *.C,*.cpp,*.java nmap ,c !!boxes -d java-cmt<CR>
-  au BufEnter *.C,*.cpp,*.java vmap ,c !boxes -d java-cmt<CR>
-  au BufEnter *.C,*.cpp,*.java nmap ,C !!boxes -d java-cmt -r<CR>
-  au BufEnter *.C,*.cpp,*.java vmap ,C !boxes -d java-cmt -r<CR>
-  au BufEnter .vimrc*,.exrc    nmap ,c !!boxes -d vim-cmt<CR>
-  au BufEnter .vimrc*,.exrc    vmap ,c !boxes -d vim-cmt<CR>
-  au BufEnter .vimrc*,.exrc    nmap ,C !!boxes -d vim-cmt -r<CR>
-  au BufEnter .vimrc*,.exrc    vmap ,C !boxes -d vim-cmt -r<CR>
-  au BufEnter *.lua            nmap ,c !!boxes -d ada-cmt<CR>
-  au BufEnter *.lua            vmap ,c !boxes -d ada-cmt<CR>
-  au BufEnter *.lua            nmap ,C !!boxes -d ada-cmt -r<CR>
-  au BufEnter *.lua            vmap ,C !boxes -d ada-cmt -r<CR>
-  au BufEnter *.go             nmap ,c !!boxes -d c-cmt<CR>
-  au BufEnter *.go             vmap ,c !boxes -d c-cmt<CR>
-  au BufEnter *.go             nmap ,C !!boxes -d c-cmt -r<CR>
-  au BufEnter *.go             vmap ,C !boxes -d c-cmt -r<CR>
-  au BufEnter *.hs             nmap ,c !!boxes -d ada-cmt<CR>
-  au BufEnter *.hs             vmap ,c !boxes -d ada-cmt<CR>
-  au BufEnter *.hs             nmap ,C !!boxes -d ada-cmt -r<CR>
-  au BufEnter *.hs             vmap ,C !boxes -d ada-cmt -r<CR>
-endif
+  au BufEnter *                let g:boxes_comment_type = 'pound-cmt'
+  au BufEnter *.html           let g:boxes_comment_type = 'html-cmt'
+  au BufEnter *.[chly],*.[pc]c let g:boxes_comment_type = 'c-cmt'
+  au BufEnter *.C,*.cpp,*.java let g:boxes_comment_type = 'java-cmt'
+  au BufEnter .vimrc*,.exrc    let g:boxes_comment_type = 'vim-cmt'
+  au BufEnter *.lua            let g:boxes_comment_type = 'ada-cmt'
+  au BufEnter *.go             let g:boxes_comment_type = 'c-cmt'
+  au BufEnter *.hs             let g:boxes_comment_type = 'ada-cmt'
 
+  nmap ,c :call Comment()<CR>
+  vmap ,c :call CommentRange()<CR>
+  nmap ,C :call Uncomment()<CR>
+  vmap ,C :call UncommentRange()<CR>
+endif
