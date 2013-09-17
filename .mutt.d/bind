@@ -3,10 +3,11 @@
 # Sat May 21 17:01:27 EDT 2011
 # vim: ft=muttrc
 
-macro index "S" "<save-message>=SPAM<return>y"
+#macro index "S" "<save-message>=SPAM<return>y"
 
 macro pager "\cB" "<pipe-message>urlview\n"	"View URLS."
 macro pager \cV "<pipe-message>gpg --verify -<return>"
 macro pager \cP "<pipe-message>gpg --decrypt -<return>"
 
-macro compose "M" ":my_hdr Mail-followup-to: michael@michaelkelly.org"
+# This clobbers the default fetch-mail binding, which is for POP. I never use POP.
+bind index G imap-fetch-mail

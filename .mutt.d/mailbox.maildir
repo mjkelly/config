@@ -1,0 +1,11 @@
+# Main mutt config.
+# Michael Kelly
+# Sat Sep 14 23:31:52 EDT 2013
+# vim: filetype=muttrc
+
+set mbox_type=Maildir
+set folder="~/Maildir"
+set spoolfile="+INBOX"
+set postponed="+[Gmail].Drafts"
+set mbox="+INBOX"
+#set record="+[Gmail].Sent Mail"

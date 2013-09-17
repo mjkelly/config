@@ -1,0 +1,13 @@
+# Main mutt config.
+# Michael Kelly
+# Sat Sep 14 23:31:52 EDT 2013
+# vim: filetype=muttrc
+
+set folder="imaps://imap.gmail.com:993"
+set spoolfile="+INBOX"
+set postponed="+[Gmail]/Drafts"
+
+set imap_keepalive=900
+set mail_check=30
+set timeout=30
+set header_cache="~/.mutt-header-cache"

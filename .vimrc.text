@@ -6,7 +6,12 @@
 
 set textwidth=72
 set comments=nb:>
-set formatoptions=tcq
+" t = auto-wrap text at textwidth
+" c = auto-wrap comments at textwidth
+" q = allow formatting comments with "gq"
+" a = automatic paragraph formatting
+" w = only lines ending in whitespace indicate paragraph continuation
+set formatoptions=tcqaw
 set syn=mail
 set nocindent
 set nosmartindent

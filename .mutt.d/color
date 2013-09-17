@@ -6,10 +6,7 @@
 # ==================================================
 # General
 # ==================================================
-# This color scheme is easier on the eyes than the default.
-color error red black
-color message white black
-color indicator white red
+# # Default is yellow on blue, which is painful.
 color status white blue
 
 # ==================================================
@@ -18,7 +15,7 @@ color status white blue
 # (order for precedence, not logic)
 
 # deleted mails
-color index blue black '~D'
+color index black yellow '~D'
 # replied mails
 color index blue black '~Q'
 # from me
@@ -30,10 +27,6 @@ color index brightred black '~F'
 # Pager
 # ==================================================
 
-# Make attachment color less harsh
-color attachment  green  black
-
 # Highlight web addresses
 color body cyan black "(ftp|http|https)://[^ >]*"
-color body cyan black "<URL:[^ ]*>"
-color body cyan black "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([-_./~a-z0-9]+)?"
+color body cyan black "www\\.[-.a-z0-9]+\\.[a-z][a-z][a-z]?([^ >]+)?"

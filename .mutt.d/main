@@ -1,38 +1,24 @@
 # Main mutt config.
 # Michael Kelly
-# Wed Aug 17 21:14:42 EDT 2011
+# Sat Sep 14 23:31:52 EDT 2013
 # vim: filetype=muttrc
 
 set alias_file="~/.mutt.d/alias.localonly"
 set mailcap_path="~/.mutt.d/mailcap"
-set folder="imaps://imap.gmail.com:993"
-set spoolfile="+INBOX"
-set postponed="+[Gmail]/Drafts"
-set trash="imaps://imap.gmail.com/[Gmail]/Trash"
-set header_cache="~/.mutt-header-cache"
-set imap_keepalive=900
-set mail_check=30
-set timeout=30
 set sendmail="/usr/bin/msmtp"
 set editor="vim -c 'source ~/.vimrc.text'"
-set index_format="%4C %Z %[%R %b %d] %-15.15L %2M %s"
-set imap_passive=no
+set text_flowed=yes
 # signature set in hooks.*
 
 set move=no
 set help=no
 set markers=no
-set copy=yes
-set use_from=yes
-set envelope_from=yes
 set fast_reply=yes
 set sleep_time=0
 set sort=threads
 set collapse_unread=no
-set postpone=ask-yes
 set wait_key=no
 set pager_stop=yes
-set pipe_decode=yes
 # include set in hooks.*
 
 # Choose plaintext mail formats if they are available; auto-view html if
@@ -40,17 +26,14 @@ set pipe_decode=yes
 alternative_order text/plain text/enriched text text/html
 auto_view text/html
 
-# Aggressive header weeding
-ignore *
-unignore from date subject to cc
-unignore organization organisation
-unignore posted-to reply-to
-unignore user-agent
-unignore x-mailing-list x-gpg-key x-pgp-key x-spam-score x-bogosity
-
 set from='Michael Kelly <m@michaelkelly.org>'
 alternates "@michaelkelly.org"
 
+# Choose between maildir and IMAP setups
+source ~/.mutt.d/mailbox.maildir
+#source ~/.mutt.d/mailbox.imap
+
+# The rest is standard.
 source ~/.mutt.d/bind
 source ~/.mutt.d/lists.localonly
 source ~/.mutt.d/pgp
