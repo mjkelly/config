@@ -283,9 +283,8 @@ set beep_on_message = 1
 # Set 'url_regex' to a regular expression matching urls.  If it matches an
 # url in an incoming messages, it'll print it to the log window.
 # Don't forget to load the urlregex module if you plan to use this feature!
-#set url_regex = "(((https?|ftps?|nntp)://)|www[.][-a-z0-9.]+|(mailto:|news:))(%[0-9A-F]{2}|[-_.!~*';/?:@&=+$,#[:alnum:]])+"
-#
-#module load urlregex
+set url_regex = "(((https?|ftps?|nntp)://)|www[.][-a-z0-9.]+|(mailto:|news:))(%[0-9A-F]{2}|[-_.!~*';/?:@&=+$,#[:alnum:]])+"
+module load urlregex
 
 
 # Traces logging
@@ -512,7 +511,7 @@ set escdelay = 50
 # (Only available if mcabber is built with OTR support)
 # Set otr to 1 to enable OTR support.
 # You cannot change this option once mcabber is running.
-#set otr = 0
+set otr = 1
 #
 # OTR directory
 # You can specify the OTR directory with the otr_dir option
