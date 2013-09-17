@@ -44,6 +44,7 @@ set -o ignoreeof
 ulimit -c 10000
 
 export GOROOT=$HOME/go
+export GOPATH=$HOME/gocode
 export PATH=$PATH:~/bin:$GOROOT/bin
 
 export PS1='[$?]\u@\h:\w$ '
