@@ -6,7 +6,7 @@
 set alias_file="~/.mutt.d/alias.localonly"
 set mailcap_path="~/.mutt.d/mailcap"
 set sendmail="/usr/bin/msmtp"
-set editor="vim -c 'source ~/.vimrc.text'"
+set editor="vim -u ~/.vimrc.text"
 set text_flowed=yes
 # signature set in hooks.*
 
