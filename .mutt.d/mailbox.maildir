@@ -8,4 +8,7 @@ set folder="~/Maildir"
 set spoolfile="+INBOX"
 set postponed="+[Gmail].Drafts"
 set mbox="+INBOX"
-#set record="+[Gmail].Sent Mail"
+# set record for the '<' shortcut, but don't actually copy messages there --
+# Gmail does that.
+set record="+[Gmail].Sent Mail"
+set copy=no
