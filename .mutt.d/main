@@ -19,6 +19,8 @@ set sort=threads
 set collapse_unread=no
 set wait_key=no
 set pager_stop=yes
+# pipe_decode is so that urlview gets decoded HTML output (line wraps, etc).
+set pipe_decode=yes
 # include set in hooks.*
 
 # Choose plaintext mail formats if they are available; auto-view html if
