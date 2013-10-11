@@ -28,6 +28,8 @@ syntax on
 
 colorscheme koehler
 
+filetype plugin on
+
 set viminfo='100,<500,s10,h
 
 " **********************************************************
@@ -148,8 +150,10 @@ if !exists("autocmds")
   au BufNewFile *.cc,*.cpp,*.c++,*.cxx :call InclTmpl('cpp')
   au BufNewFile *.pl,*.cgi	:call InclTmpl('pl')
 
-  au BufReadPost *.txt		:syntax off
-  au BufReadPost *.txt.gpg	:syntax off
+  au BufReadPost *.txt         :syntax off
+  au BufReadPost *.txt.gpg     :syntax off
+
+  au BufWritePre *.go silent Fmt
 
   " Configure boxes(1) shortcuts..
   au BufEnter *                let g:boxes_comment_type = 'pound-cmt'

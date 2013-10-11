@@ -14,8 +14,6 @@ color status white blue
 # ==================================================
 # (order for precedence, not logic)
 
-# deleted mails
-color index black yellow '~D'
 # replied mails
 color index blue black '~Q'
 # from me

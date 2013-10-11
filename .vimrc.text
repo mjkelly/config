@@ -4,6 +4,7 @@
 " Michael Kelly
 " Sat May 15 11:32:38 PDT 2004
 
+set nocompatible
 set textwidth=72
 set comments=nb:>
 " t = auto-wrap text at textwidth
@@ -15,6 +16,11 @@ set formatoptions=tcqaw
 set syn=mail
 set nocindent
 set nosmartindent
+set backspace=indent,eol,start
+
+map ,s :setlocal spell! spell?<CR>
+map ,p :setlocal paste! paste?<CR>
+map ,r :setlocal ruler! ruler?<CR>
 
 syntax on
 colorscheme koehler
