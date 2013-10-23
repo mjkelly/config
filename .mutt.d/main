@@ -16,6 +16,7 @@ set markers=no
 set fast_reply=yes
 set sleep_time=0
 set sort=threads
+set sort_aux=last-date-received
 set collapse_unread=no
 set wait_key=no
 set pager_stop=yes
