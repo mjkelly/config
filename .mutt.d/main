@@ -31,6 +31,7 @@ auto_view text/html
 
 set from='Michael Kelly <m@michaelkelly.org>'
 alternates "@michaelkelly.org"
+set reverse_name
 
 # Choose between maildir and IMAP setups
 source ~/.mutt.d/mailbox.maildir
