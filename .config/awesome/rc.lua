@@ -203,6 +203,8 @@ globalkeys = awful.util.table.join(
     -- This one is just for muscle-memory backwards compatibility.
     awful.key({ modkey,           }, "backslash", function () awful.util.spawn(screenlock) end),
 
+    awful.key({ modkey, altkey    }, "t", function () awful.util.spawn("toggle-touchpad.sh") end),
+
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
