@@ -1,10 +1,10 @@
 # Packages to install.
-# Beware that some of these packages require X.
-awesome
-boxes
+# These packages require X, and so are commented out by default:
+#awesome
+#qiv
 cifs-utils
 git
-pmount
-qiv
+gnupg
+gnupg-curl
 tmux
 vim
