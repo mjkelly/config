@@ -18,9 +18,8 @@ set nocindent
 set nosmartindent
 set backspace=indent,eol,start
 
-map ,s :setlocal spell! spell?<CR>
-map ,p :setlocal paste! paste?<CR>
-map ,r :setlocal ruler! ruler?<CR>
+map <Leader>s :setlocal spell! spell?<CR>
+map <Leader>p :setlocal paste! paste?<CR>
+map <Leader>r :setlocal ruler! ruler?<CR>
 
 syntax on
-colorscheme koehler
