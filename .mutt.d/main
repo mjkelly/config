@@ -1,12 +1,12 @@
 # Main mutt config.
 # Michael Kelly
-# Sat Sep 14 23:31:52 EDT 2013
+# Mon Apr 14 22:24:18 EDT 2014
 # vim: filetype=muttrc
 
 set alias_file="~/.mutt.d/alias.localonly"
 set mailcap_path="~/.mutt.d/mailcap"
 set sendmail="/usr/bin/msmtp"
-set editor="vim -u ~/.vimrc.text"
+set editor="/usr/bin/vim"
 set text_flowed=yes
 # signature set in hooks.*
 
