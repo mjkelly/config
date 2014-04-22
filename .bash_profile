@@ -2,5 +2,5 @@ if [ -e ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-keychain ~/.ssh/*-key
+keychain -q --timeout 1440 ~/.ssh/*-key
 . ~/.keychain/$HOSTNAME-sh
