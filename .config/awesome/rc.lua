@@ -204,6 +204,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "backslash", function () awful.util.spawn(screenlock) end),
 
     awful.key({ modkey, altkey    }, "t", function () awful.util.spawn("toggle-touchpad.sh") end),
+    awful.key({ modkey, altkey    }, "s", function () awful.util.spawn("/usr/bin/scrot") end),
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
