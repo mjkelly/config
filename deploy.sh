@@ -83,7 +83,7 @@ deploy_file () {
 install_packages () {
   local package_list=$1
   local packages="$(grep -E -v '^\s*#' $package_list)"
-  local cmd="sudo aptitude"
+  local cmd="sudo apt-get"
   if [ "$MODE" != "real" ]; then
     cmd="echo Would run: $cmd"
   fi

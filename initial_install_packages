@@ -1,8 +1,11 @@
 # Packages to install.
 # These packages require X, and so are commented out by default:
 #awesome
+#rxvt-unicode
 #qiv
-cifs-utils
+# Some extra stuff:
+#cifs-utils
+aptitude
 git
 gnupg
 gnupg-curl
