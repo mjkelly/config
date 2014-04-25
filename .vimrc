@@ -12,6 +12,11 @@ filetype plugin on
 set hlsearch
 set number
 
+set ts=2
+set sw=2
+set expandtab
+set modeline
+
 " ============================================================================
 " Custom keybindings.
 " (Go nuts with stuff hidden behind <Leader> try to keep the rest minimal.)
