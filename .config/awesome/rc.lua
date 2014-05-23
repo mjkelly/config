@@ -18,7 +18,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/default-mjk/theme.l
 terminal = "urxvt"
 editor = "vim"
 editor_cmd = terminal .. " -e " .. editor
-screenlock = "xscreensaver-command -lock"
+screenlock = "gnome-screensaver-command --lock"
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.

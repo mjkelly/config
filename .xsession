@@ -34,7 +34,7 @@ synclient MaxTapTime=0 PalmDetect=1 PalmMinWidth=85 PalmMinZ=17298  \
 
 # These should apply to all machines:
 
-/usr/bin/xscreensaver -nosplash &
+/usr/bin/gnome-screensaver &
 /usr/bin/nm-applet &
 caffeine >/dev/null 2>&1 &
 # For red screen at night (coords are NYC):
