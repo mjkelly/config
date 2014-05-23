@@ -2,5 +2,7 @@ if [ -e ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
-keychain -q --timeout 1440 ~/.ssh/*-key
-. ~/.keychain/$HOSTNAME-sh
+if which keychain >/dev/null 2>&1; then
+  keychain -q --timeout 1440 ~/.ssh/*-key
+  . ~/.keychain/$HOSTNAME-sh
+fi
