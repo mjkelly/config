@@ -1,0 +1,11 @@
+# This file contains notes about the contents of other files I should set up.
+# It is in an adhoc format I am making up right now:
+# Lines beginning with '#' are comments
+# Lines beginning with '-' designate filenames
+# Lines beginning with ' ' are the contents for the most-recently-specified file.
+
+-/etc/fstab
+ # samba stuff, for easy mounting of shares
+ \\caravel.home.michaelkelly.org\share   /mnt/share   cifs credentials=/home/mkelly/.share-creds
+ \\caravel.home.michaelkelly.org\share2  /mnt/share2  cifs credentials=/home/mkelly/.share-creds
+
