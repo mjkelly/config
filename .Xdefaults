@@ -21,3 +21,5 @@ Rxvt*color15: #ffffff
 Rxvt*scrollBar: false
 Rxvt*loginShell: true
 URxvt.urgentOnBell: true
+
+xterm*eightBitInput: false
