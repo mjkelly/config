@@ -22,4 +22,9 @@ Rxvt*scrollBar: false
 Rxvt*loginShell: true
 URxvt.urgentOnBell: true
 
+! disables ctrl-shift input options
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! allows alt-left/alt-right navigation in xterm
 xterm*eightBitInput: false
