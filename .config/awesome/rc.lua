@@ -360,6 +360,9 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
+    -- this grabs hangouts windows. let's try it out for a while.
+    { rule = { role = "pop-up" },
+      properties = { floating = true } },
 }
 -- }}}
 
