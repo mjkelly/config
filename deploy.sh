@@ -95,17 +95,17 @@ install_packages () {
 ACTION=$1
 CONF_DIR="$PWD"
 
-if [ "$ACTION" = "real" ]; then
+if [ "$ACTION" = "config" ]; then
   TARGET_DIR="$HOME"
   MODE="real"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
-elif [ "$ACTION" = "test" ]; then
+elif [ "$ACTION" = "test-config" ]; then
   TARGET_DIR="$HOME/test"
   MODE="real"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
-elif [ "$ACTION" = "dry" ]; then
+elif [ "$ACTION" = "dry-config" ]; then
   echo
-  echo "*** Dry-run mode. Run '$0 real' to run for real. ***"
+  echo "*** Dry-run mode. Run '$0 config' to run for real. ***"
   echo
   TARGET_DIR="$HOME"
   MODE="test"
@@ -120,6 +120,6 @@ elif [ "$ACTION" = "packages" ]; then
   MODE="real"
   install_packages "$CONF_DIR/$PACKAGE_FILE"
 else
-  echo "USAGE: $0 test|real|dry|packages|dry-packages"
+  echo "USAGE: $0 test-config|config|dry-config|packages|dry-packages"
   exit 2
 fi
