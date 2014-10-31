@@ -87,7 +87,7 @@ install_packages () {
   if [ "$MODE" != "real" ]; then
     cmd="echo Would run: $cmd"
   fi
-  $cmd install $packages
+  $cmd install -y $packages
 }
 
 # -----------------------------------------------------------------
