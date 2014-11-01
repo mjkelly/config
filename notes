@@ -9,3 +9,6 @@
  \\caravel.home.michaelkelly.org\share   /mnt/share   cifs credentials=/home/mkelly/.share-creds
  \\caravel.home.michaelkelly.org\share2  /mnt/share2  cifs credentials=/home/mkelly/.share-creds
 
+ # or, NFS
+ caravel.home.michaelkelly.org:/data/share   /mnt/share   nfs4 noauto,timeo=14,soft,user 0 0
+ caravel.home.michaelkelly.org:/data2        /mnt/share2  nfs4 noauto,timeo=14,soft,user 0 0
