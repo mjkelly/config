@@ -21,13 +21,18 @@ set modeline
 " Custom keybindings.
 " (Go nuts with stuff hidden behind <Leader> try to keep the rest minimal.)
 " ============================================================================
-map <Leader>h :nohlsearch<CR>
-map <Leader>s :setlocal spell! spell?<CR>
-map <Leader>p :setlocal paste! paste?<CR>
-map <Leader>n :setlocal number! number?<CR>
+nnoremap <Leader>h :nohlsearch<CR>
+nnoremap <Leader>s :setlocal spell! spell?<CR>
+nnoremap <Leader>p :setlocal paste! paste?<CR>
+nnoremap <Leader>n :setlocal number! number?<CR>
 
-map <C-J> :bnext<CR>
-map <C-K> :bprevious<CR>
+nnoremap <C-J> :bnext<CR>
+nnoremap <C-K> :bprevious<CR>
+
+nnoremap <up> gk
+nnoremap k gk
+nnoremap <down> gj
+nnoremap j gj
 
 " ============================================================================
 " Stuff to set up context.
