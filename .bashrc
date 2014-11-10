@@ -5,10 +5,10 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. See bash(1) for more options
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
+# don't put duplicate lines in the history. See bash(1) for more options.
 export HISTCONTROL=ignoreboth
+# don't save history to a file; in-memory only
+unset HISTFILE
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -63,6 +63,16 @@ fi
 
 # Function to reload environment and start a new ssh-agent if necessary.
 function kc() {
-    keychain --agents ssh ~/.ssh/*-key
-    source ~/.keychain/$HOSTNAME-sh
+  if which keychain >/dev/null 2>&1; then
+    keychain -q --timeout 1440 ~/.ssh/*-key
+    . ~/.keychain/$HOSTNAME-sh
+  else
+      echo "No keychain application."
+  fi
 }
+
+alias m='cd ~/attachments && /usr/bin/mutt'
+
+if [ -f $HOME/.bashrc.localonly ]; then
+  source $HOME/.bashrc.localonly
+fi
