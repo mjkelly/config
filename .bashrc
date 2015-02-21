@@ -2,13 +2,10 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+# === basic setup ===
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
-
-# don't put duplicate lines in the history. See bash(1) for more options.
-export HISTCONTROL=ignoreboth
-# don't save history to a file; in-memory only
-unset HISTFILE
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -33,25 +30,31 @@ fi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export EDITOR=vim
-export BROWSER=firefox
-
-set -o ignoreeof
-
-ulimit -c 10000
-
-export GOROOT=$HOME/go
-export GOPATH=$HOME/gocode
-export PATH=$PATH:~/bin:$GOROOT/bin
-
-export PS1='[$?]\u@\h:\w$ '
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+# === personalization ===
+
+export EDITOR=vim
+export BROWSER=google-chrome
+set -o ignoreeof
+ulimit -c 10000
+export PS1='[$?]\u@\h:\w$ '
+# don't put duplicate lines in the history. See bash(1) for more options.
+export HISTCONTROL=ignoreboth
+# don't save history to a file; in-memory only
+unset HISTFILE
+
+# Go language installation
+export GOROOT=$HOME/go
+# All installed go code, including mine in a subdirectory.
+export GOPATH=$HOME/gocode
+
+export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
 
 # Grab the latest environment set by keychain.
 if [ -e ~/$HOME/.keychain/$HOSTNAME-sh ]; then
@@ -68,8 +71,9 @@ function kc() {
   fi
 }
 
-alias m='cd ~/attachments && /usr/bin/mutt'
+alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
 
+# This is for machine-specific stuff that I don't want to commit.
 if [ -f $HOME/.bashrc.localonly ]; then
   source $HOME/.bashrc.localonly
 fi
