@@ -58,7 +58,3 @@ au BufReadPost *
   \ if line("'\"") > 0 && line ("'\"") <= line("$") |
   \   exe "normal! g'\"" |
   \ endif
-
-" Go stuff
-" TODO: This should be somewhere else. Not sure exactly where.
-au BufWritePre *.go silent Fmt
