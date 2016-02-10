@@ -24,7 +24,6 @@ esac
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    export GREP_OPTIONS="--color=auto"
 fi
 
 export LC_ALL=en_US.UTF-8
