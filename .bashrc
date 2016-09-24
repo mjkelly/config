@@ -55,19 +55,10 @@ export GOPATH=$HOME/gocode
 
 export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
 
-# Grab the latest environment set by keychain.
-if [ -e ~/$HOME/.keychain/$HOSTNAME-sh ]; then
-  source ~/.keychain/$HOSTNAME-sh
-fi
-
-# Function to reload environment and start a new ssh-agent if necessary.
+# We assume there's a running ssh-agent, which is actually a safe assumption on
+# most common modern environments! (#yearofthelinuxdesktop).
 function kc() {
-  if which keychain >/dev/null 2>&1; then
-    keychain -q --timeout 1440 ~/.ssh/*-key
-    . ~/.keychain/$HOSTNAME-sh
-  else
-      echo "No keychain application."
-  fi
+  ssh-add ~/.ssh/*-key
 }
 
 alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
