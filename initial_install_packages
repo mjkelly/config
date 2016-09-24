@@ -6,10 +6,10 @@
 #scrot
 # Some extra stuff:
 #cifs-utils
-aptitude
+#aptitude
 git
 gnupg
 gnupg-curl
 tmux
 vim
-keychain
+#keychain
