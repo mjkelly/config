@@ -34,8 +34,8 @@ alternates "@michaelkelly.org"
 set reverse_name
 
 # Choose between maildir and IMAP setups
-source ~/.mutt.d/mailbox.maildir
-#source ~/.mutt.d/mailbox.imap
+#source ~/.mutt.d/mailbox.maildir
+source ~/.mutt.d/mailbox.imap
 
 # The rest is standard.
 source ~/.mutt.d/bind
