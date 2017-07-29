@@ -83,7 +83,7 @@ fi
 # helper to re-source configuration if it's out of date
 function kc() {
     . "${SSH_ENV}" > /dev/null
-    ssh-add ~/.ssh/*-key
+    ssh-add -t 18h ~/.ssh/*-key
 }
 
 # This is for machine-specific stuff that I don't want to commit.
