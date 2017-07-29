@@ -54,14 +54,37 @@ export GOROOT=$HOME/go
 export GOPATH=$HOME/gocode
 
 export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
+alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
 
-# We assume there's a running ssh-agent, which is actually a safe assumption on
-# most common modern environments! (#yearofthelinuxdesktop).
-function kc() {
-  ssh-add ~/.ssh/*-key
+# Set up ssh-agent
+# This is based on: https://gist.github.com/mzedeler/45ef2be24d9ff13b33ba
+# It's functionally equivalent to using 'keychain'.
+SSH_ENV="$HOME/.ssh/environment"
+
+function start_agent {
+    echo "Initializing new SSH agent..."
+    touch $SSH_ENV
+    chmod 600 "${SSH_ENV}"
+    /usr/bin/ssh-agent | sed 's/^echo/#echo/' >> "${SSH_ENV}"
+    . "${SSH_ENV}" > /dev/null
+    /usr/bin/ssh-add
 }
 
-alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
+# Source SSH settings, if applicable
+if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    kill -0 $SSH_AGENT_PID 2>/dev/null || {
+        start_agent
+    }
+else
+    start_agent
+fi
+
+# helper to re-source configuration if it's out of date
+function kc() {
+    . "${SSH_ENV}" > /dev/null
+    ssh-add ~/.ssh/*-key
+}
 
 # This is for machine-specific stuff that I don't want to commit.
 if [ -f $HOME/.bashrc.localonly ]; then
