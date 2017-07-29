@@ -55,7 +55,6 @@ export GOPATH=$HOME/gocode
 
 export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
 
-<<<<<<< Updated upstream
 # We assume there's a running ssh-agent, which is actually a safe assumption on
 # most common modern environments! (#yearofthelinuxdesktop).
 function kc() {
