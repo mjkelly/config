@@ -38,7 +38,7 @@ fi
 
 # === personalization ===
 
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=google-chrome
 set -o ignoreeof
 ulimit -c 10000
