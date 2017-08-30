@@ -1,6 +1,8 @@
+execute pathogen#infect()
+filetype plugin on
+
 set hlsearch
-"set number
-set modeline
+"set modeline
 set modelines=10
 set textwidth=79
 
