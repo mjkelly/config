@@ -1,6 +1,8 @@
 My configs, for setting up new personal machines.
 
-deploy.sh is a convenient deployment script.
+deploy.sh is a convenient, though crude, deployment script. (I could probably
+use the 'dotfiles' program for this now, but I didn't know about 'dotfiles'
+then and this repo appears to predate it.)
 
 Some configs reference excluded files ending in ".localonly". These contain
 authentication information, etc, and are .gitignore'd. They must be manually
