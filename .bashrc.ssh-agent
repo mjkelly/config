@@ -1,0 +1,51 @@
+# Set up ssh-agent. This is meant to be sourced from your .bashrc, like this:
+#   source $HOME/.bashrc.ssh-agent
+#
+# This has the following useful properties:
+# - It always starts an agent if necessary, but only if it can't load an
+#   existing environment.
+# - It's quiet except when loading a new agent.
+# - It works on Ubuntu and OS X, and probably elsewhere. (It doesn't rely on
+#   any system's auto-started agent.)
+#
+# It's based on: https://gist.github.com/mzedeler/45ef2be24d9ff13b33ba
+#
+# It's functionally equivalent to using 'keychain'.
+
+SSH_ENV="$HOME/.ssh/environment"
+
+# Helper to start a new ssh agent and save its configuration. Don't call this,
+# call start_agent().
+function _do_start_agent {
+  echo "Initializing new SSH agent..."
+  touch $SSH_ENV
+  chmod 600 "${SSH_ENV}"
+  /usr/bin/ssh-agent > "${SSH_ENV}"
+  . "${SSH_ENV}" > /dev/null
+  /usr/bin/ssh-add
+}
+
+# Look for existing agent configuration, and if it's not found, start an agent.
+# This is always safe to call, but usually you want the kc() helper.
+function start_agent {
+  # Source SSH settings, if applicable
+  if [ -f "${SSH_ENV}" ]; then
+    . "${SSH_ENV}" > /dev/null
+    kill -0 $SSH_AGENT_PID 2>/dev/null || {
+      _do_start_agent
+    }
+  else
+    _do_start_agent
+  fi
+}
+
+# "kc" (for "KeyChain"): Helper to load keys (with a timeout).
+# I run this at the beginning of each day. The timeout is set to less than 24h
+# so they don't time out early in the day when I'm already using the computer.
+function kc() {
+    start_agent
+    ssh-add -t 18h ~/.ssh/*-key
+}
+
+# Always load configuration (or start an agent) when starting a new shell.
+start_agent
