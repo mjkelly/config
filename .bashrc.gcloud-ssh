@@ -1,0 +1,20 @@
+# Aliases to use a jump host when accessing GCE instances.
+# You can swap out the hostname here for something you prefer.
+alias proxyssh='ssh -o"ProxyCommand=ssh -q -W %h:%p jump"'
+alias proxyscp='scp -o"ProxyCommand=ssh -q -W %h:%p jump"'
+
+# Autocomplete based on ~/.ssh/config.
+# To add GCE instances to this list, run:
+#     gcloud compute config-ssh
+_ssh()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts=$(grep '^Host' ~/.ssh/config | grep -v '[?*]' | cut -d ' ' -f 2-)
+
+    COMPREPLY=( $(compgen -W "$opts" -- ${cur}) )
+    return 0
+}
+complete -F _ssh ssh proxyssh scp proxyscp
