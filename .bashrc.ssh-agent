@@ -31,9 +31,15 @@ function start_agent {
   # Source SSH settings, if applicable
   if [ -f "${SSH_ENV}" ]; then
     . "${SSH_ENV}" > /dev/null
-    kill -0 $SSH_AGENT_PID 2>/dev/null || {
+    # We don't try "kill -0 $SSH_AGENT_PID" because that only checks if
+    # *something* is running at that PID. We need to know that ssh-agent
+    # specifically is running there. Since this is probably running near
+    # startup, you're likely filling up low PIDs and it is entirely plausible
+    # to have a collision.
+    pgrep ssh-agent | grep "^${SSH_AGENT_PID}$" >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
       _do_start_agent
-    }
+    fi
   else
     _do_start_agent
   fi
