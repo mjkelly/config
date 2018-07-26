@@ -117,7 +117,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>2</number>
+    <number>3</number>
     <firstdesk>1</firstdesk>
     <names>
       <!-- set names up here if you want to, like this:
@@ -341,6 +341,12 @@
         <command>lxterminal</command>
       </action>
     </keybind>
+    <keybind key="W-b">
+      <action name="Execute">
+        <command>google-chrome-stable</command>
+      </action>
+    </keybind>
+
     <keybind key="W-Right">
       <action name="MoveResizeTo">
         <x>-0</x>
