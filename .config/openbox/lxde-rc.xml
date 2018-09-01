@@ -341,11 +341,6 @@
         <command>lxterminal</command>
       </action>
     </keybind>
-    <keybind key="W-b">
-      <action name="Execute">
-        <command>google-chrome-stable</command>
-      </action>
-    </keybind>
 
     <keybind key="W-Right">
       <action name="MoveResizeTo">
