@@ -1,6 +1,6 @@
 [user]
-	name = Michael Kelly
-	email = michael@michaelkelly.org
+  name = Michael Kelly
+  email = michael@michaelkelly.org
 
 [alias]
     ci = commit
@@ -14,4 +14,4 @@
   status = auto
 
 [push]
-  default = simple
+  default = current
