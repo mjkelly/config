@@ -37,12 +37,17 @@ ulimit -c 10000
 
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
-  rc=$?
-  prefix=''
+  local rc=$?
+  local prefix=''
   if [[ $rc -ne 0 ]]; then
-    prefix="($rc) "
+    prefix="\[\033[31m\]($rc)\[\033[m\] "
+    # If you prefer to avoid the red color here:
+    #prefix="($rc) "
   fi
-  PS1="$prefix\u@\h:\w$ "
+  local prompt="\[\033[32m\]\u@\h:\w$\[\033[m\]"
+  # If you prefer to avoid the color here:
+  #local prompt="\u@\h:\w$"
+  PS1="$prefix$prompt "
 }
 
 # don't put duplicate lines in the history. See bash(1) for more options.
