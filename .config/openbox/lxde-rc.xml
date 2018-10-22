@@ -36,7 +36,7 @@
        the active window is -->
   </placement>
   <theme>
-    <name>Clearlooks</name>
+    <name>Bear2</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -98,14 +98,14 @@
     <font place="ActiveOnScreenDisplay">
       <name>Sans</name>
       <size>8</size>
-      <weight></weight>
-      <slant></slant>
+      <weight/>
+      <slant/>
     </font>
     <font place="InactiveOnScreenDisplay">
       <name>Sans</name>
       <size>8</size>
-      <weight></weight>
-      <slant></slant>
+      <weight/>
+      <slant/>
     </font>
   </theme>
   <desktops>
@@ -335,13 +335,11 @@
         <command>lxrandr</command>
       </action>
     </keybind>
-
     <keybind key="W-t">
       <action name="Execute">
         <command>lxterminal</command>
       </action>
     </keybind>
-
     <keybind key="W-Right">
       <action name="MoveResizeTo">
         <x>-0</x>
@@ -364,7 +362,6 @@
     <keybind key="W-Down">
       <action name="Unmaximize"/>
     </keybind>
-
   </keyboard>
   <mouse>
     <dragThreshold>8</dragThreshold>
