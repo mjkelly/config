@@ -11,19 +11,11 @@
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
+    alias grep='grep --color=auto'
 fi
 
 export LC_ALL=en_US.UTF-8
@@ -42,7 +34,17 @@ export EDITOR=nvim
 export BROWSER=google-chrome
 set -o ignoreeof
 ulimit -c 10000
-export PS1='[$?]\u@\h:\w$ '
+
+PROMPT_COMMAND=__prompt_command
+__prompt_command() {
+  rc=$?
+  prefix=''
+  if [[ $rc -ne 0 ]]; then
+    prefix="($rc) "
+  fi
+  PS1="$prefix\u@\h:\w$ "
+}
+
 # don't put duplicate lines in the history. See bash(1) for more options.
 export HISTCONTROL=ignoreboth
 # don't save history to a file; in-memory only
@@ -55,6 +57,7 @@ export GOPATH=$HOME/gocode
 
 export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
 alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
+alias xo='xdg-open'
 
 # Set up ssh-agent
 source $HOME/.bashrc.ssh-agent
