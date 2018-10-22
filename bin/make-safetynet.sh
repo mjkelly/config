@@ -34,12 +34,6 @@ mkdir "${safety}"
 # This is the highly specific part.
 cp -r ~/.gnupg "${safety}/dot-gnupg" || die
 cp -r ~/txt/pass "${safety}" || die
-
-sudo mount /keys || die
-sudo tar -c --bzip2 -f ${backup_dir}/keys.tbz2 /keys || die
-gpg --batch --yes --encrypt --recipient 0xDBBA5E16711B3AEE ${backup_dir}/keys.tbz2 || die
-sudo umount /keys || die
-cp ${backup_dir}/keys.tbz2.gpg "${safety}" || die
 # ============================================================================
 
 cat > "${safety}/README" <<_README_
