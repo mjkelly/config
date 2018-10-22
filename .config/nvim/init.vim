@@ -45,3 +45,7 @@ nnoremap k gk
 nnoremap <down> gj
 nnoremap j gj
 
+autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+
+let g:terraform_commentstring='//%s'
+let g:terraform_align=1
