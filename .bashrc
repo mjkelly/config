@@ -62,7 +62,7 @@ export GOPATH=$HOME/gocode
 
 export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
 alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
-alias xo='xdg-open'
+alias xopen='xdg-open'
 
 # Set up ssh-agent
 source $HOME/.bashrc.ssh-agent
