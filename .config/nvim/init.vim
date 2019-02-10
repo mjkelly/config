@@ -7,6 +7,7 @@ set modelines=10
 set textwidth=79
 
 set termguicolors
+set background=light
 
 " toggle between tabs and spaces
 function! ChangeIndent()
