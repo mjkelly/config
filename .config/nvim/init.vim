@@ -25,6 +25,9 @@ endfunction
 function! IndentSpaces()
     set sw=2 ts=2 expandtab
 endfunction
+function! Indent4Spaces()
+    set sw=4 ts=4 expandtab
+endfunction
 execute IndentSpaces()
 
 " ============================================================================
@@ -47,6 +50,9 @@ nnoremap <down> gj
 nnoremap j gj
 
 autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+
+autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
+autocmd FileType json execute Indent4Spaces()
 
 let g:terraform_commentstring='//%s'
 let g:terraform_align=1
