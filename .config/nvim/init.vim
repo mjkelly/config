@@ -2,7 +2,6 @@ execute pathogen#infect()
 filetype plugin on
 
 set hlsearch
-"set modeline
 set modelines=10
 set textwidth=79
 
@@ -48,6 +47,10 @@ nnoremap <up> gk
 nnoremap k gk
 nnoremap <down> gj
 nnoremap j gj
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
 
