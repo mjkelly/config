@@ -44,7 +44,7 @@ __prompt_command() {
     # If you prefer to avoid the red color here:
     #prefix="($rc) "
   fi
-  local prompt="\[\033[32m\]\u@\h:\w$\[\033[m\]"
+  local prompt="\[\033[32m\]\u@\h:\w\$\[\033[m\]"
   # If you prefer to avoid the color here:
   #local prompt="\u@\h:\w$"
   PS1="$prefix$prompt "
