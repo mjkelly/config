@@ -12,10 +12,17 @@
 shopt -s checkwinsize
 
 # enable color support of ls and also add handy aliases
-if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
+uname="$(uname -s)"
+if [[ $uname == "Linux" ]]; then
+  if [[ "$TERM" != "dumb" && -x /usr/bin/dircolors ]]; then
+      eval "`dircolors -b`"
+      alias ls='ls --color=auto'
+      alias grep='grep --color=auto'
+  fi
+elif [[ $uname == "Darwin" ]]; then
+  # For OS X
+  alias ls='ls -G'
+  alias grep='grep --color=auto'
 fi
 
 export LC_ALL=en_US.UTF-8
