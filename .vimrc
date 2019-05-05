@@ -1,17 +1,9 @@
-" ============================================================================
-" Thu Apr  3 15:59:37 EDT 2014
-" vim configs using pathogen and vim-sensible.
-" ============================================================================
 execute pathogen#infect()
 filetype plugin on
 
-" ============================================================================
-" Personlization, beyond vim-sensible.
-" (try to keep as minimal as possible)
-" ============================================================================
 set hlsearch
-set number
-set modeline
+set modelines=10
+set textwidth=79
 
 " toggle between tabs and spaces
 function! ChangeIndent()
@@ -29,17 +21,20 @@ endfunction
 function! IndentSpaces()
     set sw=2 ts=2 expandtab
 endfunction
+function! Indent4Spaces()
+    set sw=4 ts=4 expandtab
+endfunction
 execute IndentSpaces()
 
 " ============================================================================
 " Custom keybindings.
-" (Go nuts with stuff hidden behind <Leader> try to keep the rest minimal.)
 " ============================================================================
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>s :setlocal spell! spell?<CR>
 nnoremap <Leader>p :setlocal paste! paste?<CR>
 nnoremap <Leader>n :setlocal number! number?<CR>
 nnoremap <Leader>t :execute ChangeIndent()<CR>
+nnoremap <Leader>w :call append(".", strftime("Week %U (%Y-%m-%d)"))<CR>
 
 nnoremap <C-J> :bnext<CR>
 nnoremap <C-K> :bprevious<CR>
@@ -49,12 +44,19 @@ nnoremap k gk
 nnoremap <down> gj
 nnoremap j gj
 
-" ============================================================================
-" Stuff to set up context.
-" ============================================================================
+" Commentary - use NERDCommenter-like key shortcuts.
+xmap <Leader>c        <Plug>Commentary
+nmap <Leader>c        <Plug>Commentary
+omap <Leader>c        <Plug>Commentary
+nmap <Leader>c<Space> <Plug>CommentaryLine
 
-" always jump to the last cursor position
-au BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
+" Terraform-specific things
+let g:terraform_commentstring='//%s'
+let g:terraform_align=1
+
+" ============================================================================
+" Formatting options
+" ============================================================================
+autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
+autocmd FileType json execute Indent4Spaces()
