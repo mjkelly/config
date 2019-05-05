@@ -29,9 +29,12 @@ function! Indent4Spaces()
 endfunction
 execute IndentSpaces()
 
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
+
 " ============================================================================
 " Custom keybindings.
-" (Go nuts with stuff hidden behind <Leader> try to keep the rest minimal.)
 " ============================================================================
 nnoremap <Leader>h :nohlsearch<CR>
 nnoremap <Leader>s :setlocal spell! spell?<CR>
@@ -48,14 +51,19 @@ nnoremap k gk
 nnoremap <down> gj
 nnoremap j gj
 
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" Commentary - use NERDCommenter-like key shortcuts.
+xmap <Leader>c        <Plug>Commentary
+nmap <Leader>c        <Plug>Commentary
+omap <Leader>c        <Plug>Commentary
+nmap <Leader>c<Space> <Plug>CommentaryLine
 
-autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
-
-autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
-autocmd FileType json execute Indent4Spaces()
-
+" Terraform-specific things
 let g:terraform_commentstring='//%s'
 let g:terraform_align=1
+
+" ============================================================================
+" Formatting options
+" ============================================================================
+autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
+autocmd FileType json execute Indent4Spaces()
