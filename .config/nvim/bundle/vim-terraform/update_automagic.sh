@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=$1
+VERSION="${1}"
 
 function usage {
     echo -e "
@@ -25,7 +25,9 @@ if [ "${EXISTING_TF_VERSION}" != "${VERSION}" ]; then
 fi
 
 echo "+) Acquiring terraform-${VERSION}"
-wget https://github.com/hashicorp/terraform/archive/v${VERSION}.tar.gz
+if [ ! -f "v${VERSION}.tar.gz" ]; then
+    wget https://github.com/hashicorp/terraform/archive/v${VERSION}.tar.gz
+fi
 
 echo "+) Extracting terraform-${VERSION}.tar.gz"
 tar zxf v${VERSION}.tar.gz
@@ -39,8 +41,8 @@ echo "+) Running update_commands.rb"
 echo "+) Running update_data_sources.rb"
 ./update_data_sources.rb
 
-echo "+) Running update_syntax.rb"
-./update_syntax.rb
+echo "+) Running update_resources.rb"
+./update_resources.rb
 
 echo "+) Updating the badge in the README.md"
 sed -i "/img.shields.io/c\[\![](https://img.shields.io/badge/Supports%20Terraform%20Version-%3E%3D${VERSION}-blue.svg)](https://github.com/hashicorp/terraform/blob/v${VERSION}/CHANGELOG.md)" README.md
@@ -48,5 +50,6 @@ sed -i "/img.shields.io/c\[\![](https://img.shields.io/badge/Supports%20Terrafor
 echo "+) Cleaning up after ourselves"
 rm -f v${VERSION}.tar.gz
 rm -rf terraform-${VERSION}
+sudo umount terraform-providers
 
 git status
