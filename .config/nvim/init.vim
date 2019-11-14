@@ -30,7 +30,8 @@ endfunction
 execute IndentSpaces()
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+        \ | exe "normal! g'\"" | endif
 endif
 
 " ============================================================================
@@ -52,10 +53,10 @@ nnoremap <down> gj
 nnoremap j gj
 
 " Commentary - use NERDCommenter-like key shortcuts.
-xmap <Leader>c        <Plug>Commentary
-nmap <Leader>c        <Plug>Commentary
-omap <Leader>c        <Plug>Commentary
-nmap <Leader>c<Space> <Plug>CommentaryLine
+xmap <Leader>c <Plug>Commentary
+nmap <Leader>c <Plug>Commentary
+omap <Leader>c <Plug>Commentary
+nmap <Leader>c <Plug>CommentaryLine
 
 " Terraform-specific things
 let g:terraform_commentstring='//%s'
