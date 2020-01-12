@@ -6,7 +6,9 @@ set modelines=10
 set textwidth=79
 
 set termguicolors
-set background=light
+hi Visual guifg=white guibg=Grey
+" if on a light background, set this:
+"set background=light
 
 " toggle between tabs and spaces
 function! ChangeIndent()
@@ -66,6 +68,7 @@ let g:terraform_fmt_on_save=1
 " ============================================================================
 " Formatting options
 " ============================================================================
-autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+" autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+autocmd FileType python nnoremap <leader>f :0,$!yapf3<Cr><C-o>
 autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
 autocmd FileType json execute Indent4Spaces()

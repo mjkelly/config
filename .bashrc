@@ -71,8 +71,8 @@ export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
 alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
 alias xopen='xdg-open'
 
-# Set up ssh-agent
 source $HOME/.bashrc.ssh-agent
+source $HOME/.bashrc.functions
 
 # This is for machine-specific stuff that I don't want to commit.
 if [ -f $HOME/.bashrc.localonly ]; then

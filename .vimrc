@@ -5,6 +5,11 @@ set hlsearch
 set modelines=10
 set textwidth=79
 
+set termguicolors
+hi Visual guifg=white guibg=Grey
+" if on a light background, set this:
+"set background=light
+
 " toggle between tabs and spaces
 function! ChangeIndent()
   if &expandtab
@@ -27,7 +32,8 @@ endfunction
 execute IndentSpaces()
 
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+        \ | exe "normal! g'\"" | endif
 endif
 
 " ============================================================================
@@ -49,10 +55,10 @@ nnoremap <down> gj
 nnoremap j gj
 
 " Commentary - use NERDCommenter-like key shortcuts.
-xmap <Leader>c        <Plug>Commentary
-nmap <Leader>c        <Plug>Commentary
-omap <Leader>c        <Plug>Commentary
-nmap <Leader>c<Space> <Plug>CommentaryLine
+xmap <Leader>c <Plug>Commentary
+nmap <Leader>c <Plug>Commentary
+omap <Leader>c <Plug>Commentary
+nmap <Leader>c <Plug>CommentaryLine
 
 " Terraform-specific things
 let g:terraform_commentstring='//%s'
@@ -62,6 +68,7 @@ let g:terraform_fmt_on_save=1
 " ============================================================================
 " Formatting options
 " ============================================================================
-autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+" autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
+autocmd FileType python nnoremap <leader>f :0,$!yapf3<Cr><C-o>
 autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
 autocmd FileType json execute Indent4Spaces()
