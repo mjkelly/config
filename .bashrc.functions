@@ -1,9 +1,13 @@
+# This is a convenience function to create/attach tmux sessions. It's meant to
+# be used when you login -- just type "tm", and you'll attach or create your
+# main tmux session.
+#
+# If you use more than one tmux session, you can type "tm 2" to attach/create
+# the second one. (You can use any suffix you like as the argument.)
 function tm() {
-  local session="${HOSTNAME}${1:-}"
-  if tmux ls | grep "^${session}:" 2>&1 >/dev/null; then
-    tmux att -dt "${session}"
-  else
-    tmux new -s "${session}"
-  fi
+  local hs=$(hostname -s)
+  # We keep the session short because tmux only shows the first 8 characters of
+  # a session name by default, and we want to leave room for the suffix.
+  local session="${hs:0:3}${1:-}"
+  tmux new -A -s "${session}"
 }
-
