@@ -36,6 +36,12 @@ if has("autocmd")
         \ | exe "normal! g'\"" | endif
 endif
 
+function! FormatFile()
+    let l:view = winsaveview()
+    exe ":0,$!" . g:formatCmd
+    call winrestview(l:view)
+endfunction
+
 " ============================================================================
 " Custom keybindings.
 " ============================================================================
@@ -60,6 +66,9 @@ nmap <Leader>c <Plug>Commentary
 omap <Leader>c <Plug>Commentary
 nmap <Leader>c <Plug>CommentaryLine
 
+" Generic formatting
+nnoremap <Leader>f :call FormatFile()<CR>
+
 " Terraform-specific things
 let g:terraform_commentstring='//%s'
 let g:terraform_align=1
@@ -68,7 +77,7 @@ let g:terraform_fmt_on_save=1
 " ============================================================================
 " Formatting options
 " ============================================================================
-" autocmd FileType python nnoremap <leader>f :0,$!yapf<Cr><C-o>
-autocmd FileType python nnoremap <leader>f :0,$!yapf3<Cr><C-o>
-autocmd FileType json nnoremap <leader>f :0,$!python -m json.tool<Cr><C-o>
+" autocmd FileType python let g:formatCmd="yapf"
+autocmd FileType python let g:formatCmd="yapf3"
+autocmd FileType json let g:formatCmd="python -m json.tool"
 autocmd FileType json execute Indent4Spaces()
