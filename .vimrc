@@ -6,7 +6,7 @@ set modelines=10
 set textwidth=79
 
 set termguicolors
-hi Visual guifg=white guibg=Grey
+hi Visual guifg=White guibg=Grey ctermfg=7 ctermbg=8
 " if on a light background, set this:
 "set background=light
 
