@@ -10,6 +10,9 @@ hi Visual guifg=white guibg=Grey
 " if on a light background, set this:
 "set background=light
 
+set undofile
+set undodir=~/.vimundo
+
 " toggle between tabs and spaces
 function! ChangeIndent()
   if &expandtab
