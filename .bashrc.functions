@@ -9,5 +9,5 @@ function tm() {
   # We keep the session short because tmux only shows the first 8 characters of
   # a session name by default, and we want to leave room for the suffix.
   local session="${hs:0:3}${1:-}"
-  tmux new -A -s "${session}"
+  tmux new -AD -s "${session}"
 }

@@ -80,7 +80,8 @@ let g:terraform_fmt_on_save=1
 " ============================================================================
 " Formatting options
 " ============================================================================
-" autocmd FileType python let g:formatCmd="yapf"
-autocmd FileType python let g:formatCmd="yapf3"
+autocmd FileType python let g:formatCmd="yapf"
+" autocmd FileType python let g:formatCmd="yapf3"
 autocmd FileType json let g:formatCmd="python -m json.tool"
 autocmd FileType json execute Indent4Spaces()
+autocmd FileType rust let g:formatCmd="rustfmt"

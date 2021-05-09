@@ -5,8 +5,10 @@
 [alias]
     ci = commit
     s = status
+    st = status
     b = branch
     co = checkout
+    diffc = diff @^ @
 
 [color]
   branch = auto
