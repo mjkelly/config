@@ -5,10 +5,14 @@ set hlsearch
 set modelines=10
 set textwidth=79
 
-set termguicolors
-hi Visual guifg=white guibg=Grey
-" if on a light background, set this:
-"set background=light
+if has('nvim')
+  set termguicolors
+  hi Visual guifg=white guibg=Grey term=reverse cterm=reverse
+  " if on a light background, set this:
+  "set background=light
+else
+  hi Visual term=reverse cterm=reverse
+endif
 
 set undofile
 set undodir=~/.vimundo

@@ -11,3 +11,9 @@ function tm() {
   local session="${hs:0:3}${1:-}"
   tmux new -AD -s "${session}"
 }
+
+function vi-gpg() {
+  local f=$1
+  gpg --decrypt "$f" >/dev/null
+  nvim "$f"
+}
