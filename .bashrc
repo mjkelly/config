@@ -67,7 +67,10 @@ export GOROOT=$HOME/go
 # All installed go code, including mine in a subdirectory.
 export GOPATH=$HOME/gocode
 
-export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin:
+export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin
+
+# Google cloud
+export PATH=$PATH:$HOME/google-cloud-sdk/bin
 alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
 alias xopen='xdg-open'
 
