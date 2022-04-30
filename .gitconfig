@@ -1,21 +1,18 @@
 [user]
   name = Michael Kelly
-  email = michael@michaelkelly.org
-
+  email = m@michaelkelly.org
 [alias]
-    ci = commit
-    s = status
-    st = status
-    b = branch
-    co = checkout
-    diffc = diff @^ @
-
+  ci = commit
+  s = status
+  st = status
+  b = branch
+  co = checkout
+  diffc = diff @^ @
 [color]
   branch = auto
   diff = auto
   status = auto
-
 [push]
   default = current
 [pull]
-	ff = only
+  ff = only
