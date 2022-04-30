@@ -19,14 +19,18 @@ fi
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-# === personalization ===
-
 export EDITOR=nvim
 if which nvim >/dev/null 2>&1; then
   alias vi=nvim
 fi
+# ^D doesn't exit the shell
 set -o ignoreeof
+# allow core files
 ulimit -c 10000
+# don't put duplicate lines in the history. See bash(1) for more options.
+export HISTCONTROL=ignoreboth
+# don't save history to a file; in-memory only
+unset HISTFILE
 
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
@@ -43,19 +47,10 @@ __prompt_command() {
   PS1="$prefix$prompt "
 }
 
-# don't put duplicate lines in the history. See bash(1) for more options.
-export HISTCONTROL=ignoreboth
-# don't save history to a file; in-memory only
-unset HISTFILE
+[[ ":$PATH:" != *":$HOME/bin:"* ]] && PATH="$PATH:$HOME/bin"
+[[ ":$PATH:" != *":$HOME/go/bin:"* ]] && PATH="$PATH:$HOME/go/bin"
+[[ ":$PATH:" != *":$HOME/google-cloud-sdk/bin:"* ]] && PATH="$PATH:$HOME/google-cloud-sdk/bin"
 
-# Go language installation
-export GOROOT=$HOME/go
-# All installed go code, including mine in a subdirectory.
-export GOPATH=$HOME/gocode
-
-export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin
-
-# Google cloud
-export PATH=$PATH:$HOME/google-cloud-sdk/bin
-alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
 alias xopen='xdg-open'
+
+export PATH
