@@ -1,0 +1,61 @@
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# enable color support of ls and also add handy aliases
+uname="$(uname -s)"
+if [[ $uname == "Linux" ]]; then
+  if [[ "$TERM" != "dumb" && -x /usr/bin/dircolors ]]; then
+      eval "`dircolors -b`"
+      alias ls='ls --color=auto'
+      alias grep='grep --color=auto'
+  fi
+elif [[ $uname == "Darwin" ]]; then
+  # For OS X
+  alias ls='ls -G'
+  alias grep='grep --color=auto'
+fi
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# === personalization ===
+
+export EDITOR=nvim
+if which nvim >/dev/null 2>&1; then
+  alias vi=nvim
+fi
+set -o ignoreeof
+ulimit -c 10000
+
+PROMPT_COMMAND=__prompt_command
+__prompt_command() {
+  local rc=$?
+  local prefix=''
+  if [[ $rc -ne 0 ]]; then
+    prefix="\[\033[31m\]($rc)\[\033[m\] "
+    # If you prefer to avoid the red color here:
+    #prefix="($rc) "
+  fi
+  local prompt="\[\033[32m\]\u@\h:\w\$\[\033[m\]"
+  # If you prefer to avoid the color here:
+  #local prompt="\u@\h:\w$"
+  PS1="$prefix$prompt "
+}
+
+# don't put duplicate lines in the history. See bash(1) for more options.
+export HISTCONTROL=ignoreboth
+# don't save history to a file; in-memory only
+unset HISTFILE
+
+# Go language installation
+export GOROOT=$HOME/go
+# All installed go code, including mine in a subdirectory.
+export GOPATH=$HOME/gocode
+
+export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin
+
+# Google cloud
+export PATH=$PATH:$HOME/google-cloud-sdk/bin
+alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
+alias xopen='xdg-open'

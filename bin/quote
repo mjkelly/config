@@ -1,3 +1,0 @@
-#!/usr/bin/perl -w -p
-
-$_ = "'" . join("', '", split(/\s+/, $_)) . "'\n";

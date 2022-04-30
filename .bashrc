@@ -1,84 +1,27 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# .bashrc
 
-# === basic setup ===
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# enable color support of ls and also add handy aliases
-uname="$(uname -s)"
-if [[ $uname == "Linux" ]]; then
-  if [[ "$TERM" != "dumb" && -x /usr/bin/dircolors ]]; then
-      eval "`dircolors -b`"
-      alias ls='ls --color=auto'
-      alias grep='grep --color=auto'
-  fi
-elif [[ $uname == "Darwin" ]]; then
-  # For OS X
-  alias ls='ls -G'
-  alias grep='grep --color=auto'
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
 fi
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+	for rc in ~/.bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
 fi
 
-# === personalization ===
-
-export EDITOR=nvim
-export BROWSER=google-chrome
-set -o ignoreeof
-ulimit -c 10000
-
-PROMPT_COMMAND=__prompt_command
-__prompt_command() {
-  local rc=$?
-  local prefix=''
-  if [[ $rc -ne 0 ]]; then
-    prefix="\[\033[31m\]($rc)\[\033[m\] "
-    # If you prefer to avoid the red color here:
-    #prefix="($rc) "
-  fi
-  local prompt="\[\033[32m\]\u@\h:\w\$\[\033[m\]"
-  # If you prefer to avoid the color here:
-  #local prompt="\u@\h:\w$"
-  PS1="$prefix$prompt "
-}
-
-# don't put duplicate lines in the history. See bash(1) for more options.
-export HISTCONTROL=ignoreboth
-# don't save history to a file; in-memory only
-unset HISTFILE
-
-# Go language installation
-export GOROOT=$HOME/go
-# All installed go code, including mine in a subdirectory.
-export GOPATH=$HOME/gocode
-
-export PATH=$PATH:~/bin:$GOROOT/bin:$HOME/gocode/bin
-
-# Google cloud
-export PATH=$PATH:$HOME/google-cloud-sdk/bin
-alias mygo='cd ~/gocode/src/github.com/mjkelly/go'
-alias xopen='xdg-open'
-
-source $HOME/.bashrc.ssh-agent
-source $HOME/.bashrc.functions
-
-# This is for machine-specific stuff that I don't want to commit.
-if [ -f $HOME/.bashrc.localonly ]; then
-  source $HOME/.bashrc.localonly
-fi
-
+unset rc

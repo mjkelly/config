@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sudo mount -t cifs '\\caravel.home.michaelkelly.org\share' -o 'user=mkelly' /mnt/share
