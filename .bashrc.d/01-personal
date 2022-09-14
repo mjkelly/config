@@ -25,12 +25,10 @@ if which nvim >/dev/null 2>&1; then
 fi
 # ^D doesn't exit the shell
 set -o ignoreeof
-# allow core files
-ulimit -c 10000
 # don't put duplicate lines in the history. See bash(1) for more options.
 export HISTCONTROL=ignoreboth
-# don't save history to a file; in-memory only
-unset HISTFILE
+export HISTSIZE=20000
+export HISTFILESIZE=200000
 
 PROMPT_COMMAND=__prompt_command
 __prompt_command() {
