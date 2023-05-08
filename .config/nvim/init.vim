@@ -4,6 +4,7 @@ filetype plugin on
 set hlsearch
 set modelines=10
 set textwidth=79
+set mouse=
 
 if has('nvim')
   set termguicolors
