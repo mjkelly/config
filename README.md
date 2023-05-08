@@ -1,6 +1,7 @@
-# configs
+# config
 
-My configs, for setting up new personal machines.
+My personal configs, for setting up new machines. I use these configs both for
+laptops and servers.
 
 deploy.sh is a convenient, though crude, deployment script. (I could probably
 use the 'dotfiles' program for this now, but I didn't know about 'dotfiles'
