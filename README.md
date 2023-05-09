@@ -4,14 +4,14 @@ My personal configs, for setting up new machines. I use these configs both for
 laptops and servers.
 
 deploy.sh is a convenient, though crude, deployment script. (I could probably
-use the 'dotfiles' program for this now, but I didn't know about 'dotfiles'
+use the `dotfiles` program for this now, but I didn't know about `dotfiles`
 then and this repo appears to predate it.)
 
 Some configs reference excluded files ending in `.localonly`. These contain
 authentication information, etc, and are .gitignore'd. They must be manually
 added.
 
-Some configs contain $USERNAME$, $PASSWORD$, and other pseudo-variables. You
+Some configs contain `$USERNAME$`, `$PASSWORD$`, and other pseudo-variables. You
 must replace those manually. My local username is `mkelly`, and that is
 floating around as well.
 
