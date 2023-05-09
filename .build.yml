@@ -1,0 +1,12 @@
+image: alpine/edge
+secrets:
+  - 09def2be-6540-44f4-9b5d-419d83564d93
+sources:
+  - https://git.sr.ht/~mkelly/config
+tasks:
+  - write-ssh-config: |
+      echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n    StrictHostKeyChecking no\n" >> ~/.ssh/config
+  - mirror-to-github: |
+      cd ~/config
+      git remote add github git@github.com:mjkelly/config.git
+      git push --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
