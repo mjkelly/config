@@ -2,7 +2,6 @@
 deploy.ignorefiles
 deploy.sh
 .git
-.gitconfig
 .gitignore
 initial_install_packages
 LICENSE.txt
