@@ -1,0 +1,10 @@
+.build.yml
+deploy.ignorefiles
+deploy.sh
+.git
+.gitconfig
+.gitignore
+initial_install_packages
+LICENSE.txt
+README.md
+overlay-directory

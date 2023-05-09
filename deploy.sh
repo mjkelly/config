@@ -58,17 +58,13 @@ deploy_dir () {
   ls -a $path | while read base_f; do
     f="$path/$base_f"
     # We don't copy a specific list of files.
-    if [ "$f" = "$CONF_DIR/README" -o "$f" = "$CONF_DIR/$OFFICIAL_NAME" -o "$f" = "$CONF_DIR/$PACKAGE_FILE" -o "$f" = "$CONF_DIR/.git" ]; then
+    if grep -q -- "^$base_f\$" "$CONF_DIR/deploy.ignorefiles"; then
       echo "SKIP: $f"
       continue
     fi
 
     # Don't even mention skipping "." and "..".
     if [ "$base_f" = "." -o "$base_f" = ".." ]; then
-      continue
-    fi
-    if [ "$base_f" = "$MAGIC_OVERLAY_FILE" ]; then
-      echo "SKIP: $f"
       continue
     fi
 
