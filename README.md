@@ -21,6 +21,6 @@ comments.
 
 # License
 
-All original work in this repository is covered by the BSD 3-clause license.
-See LICENSE.txt. Some files may specifically override this -- especially
-third-party stuff in `.config/nvim` and `.config/vim`.
+All original work in this repository is covered by the BSD 3-clause license
+(see LICENSE.txt), unless otherwise specified in the file itself. Third-party
+code has LICENSE files specifying its license.
