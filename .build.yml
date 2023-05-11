@@ -3,10 +3,19 @@ secrets:
   - 09def2be-6540-44f4-9b5d-419d83564d93
 environment:
   REPO: config
+  GH_USER: mjkelly
 tasks:
   - write-ssh-config: |
-      echo -e "Host github.com\n    IdentityFile ~/.ssh/id_rsa\n    IdentitiesOnly yes\n    BatchMode yes\n    StrictHostKeyChecking no\n" >> ~/.ssh/config
-  - mirror-to-github: |
+      cat <<_FILE_ >> ~/.ssh/config
+      Host github.com
+        IdentityFile ~/.ssh/id_rsa
+        IdentitiesOnly yes
+        BatchMode yes
+        StrictHostKeyChecking no
+      _FILE_
+  - push-to-github: |
       cd ~/"${REPO}"
-      git remote add github "git@github.com:mjkelly/${REPO}.git"
-      git push --prune github +refs/remotes/origin/*:refs/heads/* +refs/tags/*:refs/tags/* master
+      # remove remotes/origin/HEAD so we don't push it
+      git remote set-head origin -d
+      git remote add github "git@github.com:${GH_USER}/${REPO}.git"
+      git push --prune github '+refs/remotes/origin/*:refs/heads/*' '+refs/tags/*:refs/tags/*'
