@@ -1,5 +1,10 @@
 # config
 
+[![builds.sr.ht status](https://builds.sr.ht/~mkelly/config/commits/master.svg)](https://builds.sr.ht/~mkelly/config/commits/master?)
+
+_The canonical location of this repo is: <https://git.sr.ht/~mkelly/config>.
+Other locations are mirrors._
+
 My personal configs, for setting up new machines. I use these configs both for
 laptops and servers.
 
