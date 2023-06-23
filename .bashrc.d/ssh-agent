@@ -1,12 +1,19 @@
 # Set up ssh-agent. This is meant to be sourced from your .bashrc, like this:
 #   source $HOME/.bashrc.ssh-agent
 #
+# Then run:
+#   kc
+# to load all keys in ~/.ssh ending in "-key".
+# You'll be prompted for your ssh key passphrase.
+#
 # This has the following useful properties:
 # - It always starts an agent if necessary, but only if it can't load an
 #   existing environment.
 # - It's quiet except when loading a new agent.
 # - It works on Ubuntu and OS X, and probably elsewhere. (It doesn't rely on
 #   any system's auto-started agent.)
+# - Keys are unloaded after less than a day, so you are reprompted for your ssh
+#   key passphrase daily, but not more often than that.
 #
 # It's based on: https://gist.github.com/mzedeler/45ef2be24d9ff13b33ba
 #
@@ -18,8 +25,10 @@ SSH_ENV="$HOME/.ssh/environment"
 # call start_agent().
 function _do_start_agent {
   echo "Initializing new SSH agent..."
-  touch $SSH_ENV
-  chmod 600 "${SSH_ENV}"
+  local old_umask=$(umask)
+  umask 0066
+  touch "${SSH_ENV}"
+  umask "${old_umask}"
   /usr/bin/ssh-agent > "${SSH_ENV}"
   . "${SSH_ENV}" > /dev/null
   /usr/bin/ssh-add
