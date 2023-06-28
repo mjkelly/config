@@ -57,13 +57,18 @@ exec swayidle -w \
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
-# Example configuration:
-input "2:14:ETPS/2_Elantech_Touchpad" {
+
+# XXX: mjk
+input "type:touchpad" {
     dwt enabled
     tap disabled
     natural_scroll enabled
     middle_emulation disabled
+}
+
+# XXX: mjk
+input "type:keyboard" {
+    xkb_options ctrl:nocaps
 }
 
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -240,6 +245,6 @@ bindsym $mod+r mode "resize"
 #
 #include '$($LIBEXECDIR/sway/layered-include "$DATADIR/sway/config.d/*.conf" "$SYSCONFDIR/sway/config.d/*.conf" "${XDG_CONFIG_HOME:-$HOME/.config}/sway/config.d/*.conf")'
 
-# XXX
+# XXX: mjk
 #include "$XDG_CONFIG_HOME/sway/config.d/*"
 include "$HOME/.config/sway/config.d/*"
