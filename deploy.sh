@@ -27,16 +27,13 @@
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
-# Tested with dash 0.5.7 and public domain ksh 5.2.14.
+# Tested with dash 0.5.11.
 #
-# Sun May  7 11:23:40 PM PDT 2023
+# Sun 09 Jul 2023 01:50:33 AM EDT
 # -----------------------------------------------------------------
 
 # File used to mark directories we should recurse into.
 MAGIC_OVERLAY_FILE='overlay-directory'
-
-# So we don't copy this script.
-OFFICIAL_NAME="$(basename $0)"
 
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 
@@ -49,7 +46,7 @@ PACKAGE_FILE="initial_install_packages"
 deploy_dir () {
   local target=$1
   local path=$2
-  echo "DIR: $path"
+  echo "# DIR: $path"
 
   if [ ! -d "$target" -a "$MODE" = "real" ]; then
     mkdir -- "$target"
@@ -59,7 +56,7 @@ deploy_dir () {
     f="$path/$base_f"
     # We don't copy a specific list of files.
     if grep -q -- "^$base_f\$" "$CONF_DIR/deploy.ignorefiles"; then
-      echo "SKIP: $f"
+      echo "# SKIP: $f"
       continue
     fi
 
@@ -86,12 +83,30 @@ deploy_file () {
   local dest="$target/$base_file"
   local dest_backup="$target/$base_file.bak-$TIMESTAMP"
 
-  echo "LINK: $file --> $dest"
   if [ "$MODE" = "real" ]; then
     if [ -e "$dest" ]; then
-      mv -- "$dest" "$dest_backup"
+      # Don't make backups of links if we don't have to
+      if [ -h "$dest" -a "$(readlink "$dest")" = "$file" ]; then
+        echo "# SKIP EQUAL SYMLINK: $file -> $dest"
+        return
+      fi
+      maybe_mv -- "$dest" "$dest_backup"
     fi
-    ln -sf -- "$file" "$dest"
+    maybe_ln -sf -- "$file" "$dest"
+  fi
+}
+
+maybe_ln () {
+  echo ln "$@"
+  if [ "$MODE" = "real" ]; then
+    ln "$@"
+  fi
+}
+
+maybe_mv () {
+  echo mv "$@"
+  if [ "$MODE" = "real" ]; then
+    mv "$@"
   fi
 }
 
