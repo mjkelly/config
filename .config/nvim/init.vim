@@ -1,22 +1,21 @@
-execute pathogen#infect()
 filetype plugin on
-
 set hlsearch
 set modelines=10
 set textwidth=79
 set mouse=
+set undofile
 
 if has('nvim')
   set termguicolors
   hi Visual guifg=white guibg=Grey term=reverse cterm=reverse
   " if on a light background, set this:
   "set background=light
+  set undodir=~/.nvimundo
 else
+  syntax on
   hi Visual term=reverse cterm=reverse
+  set undodir=~/.vimundo
 endif
-
-set undofile
-set undodir=~/.vimundo
 
 " toggle between tabs and spaces
 function! ChangeIndent()
@@ -86,7 +85,6 @@ let g:terraform_fmt_on_save=1
 " Formatting options
 " ============================================================================
 autocmd FileType python let g:formatCmd="yapf"
-" autocmd FileType python let g:formatCmd="yapf3"
 autocmd FileType json let g:formatCmd="python -m json.tool"
 autocmd FileType json execute Indent4Spaces()
 autocmd FileType rust let g:formatCmd="rustfmt"
