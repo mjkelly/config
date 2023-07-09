@@ -197,6 +197,10 @@ input "type:keyboard" {
     # splits.
     bindsym $mod+Shift+b resize set width 50 ppt
     bindsym $mod+Shift+v resize set height 50 ppt
+    # Move workspaces between monitors
+    bindsym $mod+Ctrl+greater move workspace to output right
+    # Move workspaces between monitors
+    bindsym $mod+Ctrl+less move workspace to output left
 #
 # Resizing containers:
 #
