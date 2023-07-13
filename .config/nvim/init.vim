@@ -7,7 +7,9 @@ set undofile
 
 if has('nvim')
   set termguicolors
-  hi Visual guifg=white guibg=Grey term=reverse cterm=reverse
+  hi Visual guifg=white guibg=Gray term=reverse cterm=reverse
+  hi Pmenu ctermfg=black guifg=Black
+  hi PmenuSel ctermfg=black guifg=Black
   " if on a light background, set this:
   "set background=light
   set undodir=~/.nvimundo
