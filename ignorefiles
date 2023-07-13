@@ -1,9 +1,8 @@
 .build.yml
-deploy.ignorefiles
+ignorefiles
 deploy.sh
 .git
 .gitignore
-initial_install_packages
 LICENSE.txt
 README.md
 overlay-directory

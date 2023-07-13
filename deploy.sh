@@ -29,15 +29,15 @@
 #
 # Tested with dash 0.5.11.
 #
-# Sun 09 Jul 2023 01:50:33 AM EDT
+# Thu Jul 13 12:10:10 AM EDT 2023
 # -----------------------------------------------------------------
 
 # File used to mark directories we should recurse into.
 MAGIC_OVERLAY_FILE='overlay-directory'
-
+# Where we look for names of files to skip
+IGNOREFILES="ignorefiles"
+# Timestamp for this run
 TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
-
-PACKAGE_FILE="initial_install_packages"
 
 # -----------------------------------------------------------------
 
@@ -55,7 +55,7 @@ deploy_dir () {
   ls -a $path | while read base_f; do
     f="$path/$base_f"
     # We don't copy a specific list of files.
-    if grep -q -- "^$base_f\$" "$CONF_DIR/deploy.ignorefiles"; then
+    if grep -q -- "^$base_f\$" "$CONF_DIR/$IGNOREFILES"; then
       echo "# SKIP: $f"
       continue
     fi
@@ -110,46 +110,30 @@ maybe_mv () {
   fi
 }
 
-install_packages () {
-  local package_list=$1
-  local packages="$(grep -E -v '^\s*#' $package_list)"
-  local cmd="sudo apt-get"
-  if [ "$MODE" != "real" ]; then
-    cmd="echo Would run: $cmd"
-  fi
-  $cmd install -y $packages
-}
-
 # -----------------------------------------------------------------
 
 ACTION=$1
 CONF_DIR="$PWD"
 
-if [ "$ACTION" = "config" ]; then
+if [ "$ACTION" = "deploy" ]; then
   TARGET_DIR="$HOME"
   MODE="real"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
-elif [ "$ACTION" = "test-config" ]; then
+elif [ "$ACTION" = "test" ]; then
   TARGET_DIR="$HOME/test"
+  echo
+  echo "*** Test-run mode. Deploying to ${TARGET_DIR}. ***"
+  echo
   MODE="real"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
-elif [ "$ACTION" = "dry-config" ]; then
+elif [ "$ACTION" = "dryrun" ]; then
   echo
   echo "*** Dry-run mode. Run '$0 config' to run for real. ***"
   echo
   TARGET_DIR="$HOME"
   MODE="test"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
-elif [ "$ACTION" = "dry-packages" ]; then
-  echo
-  echo "*** Dry-run mode. Run '$0 packages' to run for real. ***"
-  echo
-  MODE="test"
-  install_packages "$CONF_DIR/$PACKAGE_FILE"
-elif [ "$ACTION" = "packages" ]; then
-  MODE="real"
-  install_packages "$CONF_DIR/$PACKAGE_FILE"
 else
-  echo "USAGE: $0 test-config|config|dry-config|packages|dry-packages"
+  echo "USAGE: $0 dryrun|test|deploy"
   exit 2
 fi
