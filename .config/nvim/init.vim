@@ -58,6 +58,7 @@ nnoremap <Leader>p :setlocal paste! paste?<CR>
 nnoremap <Leader>n :setlocal number! number?<CR>
 nnoremap <Leader>t :execute ChangeIndent()<CR>
 nnoremap <Leader>w :call append(".", strftime("Week %U (%Y-%m-%d)"))<CR>
+nnoremap <Leader>b :ls<CR>:b<Space>
 
 nnoremap <C-J> :bnext<CR>
 nnoremap <C-K> :bprevious<CR>
