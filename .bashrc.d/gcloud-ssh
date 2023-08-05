@@ -1,3 +1,5 @@
+return # disable for now
+
 # Aliases to use a jump host when accessing GCE instances.
 # You can swap out the hostname here for something you prefer.
 alias proxyssh='ssh -o"ProxyCommand=ssh -q -W %h:%p jump"'
