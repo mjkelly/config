@@ -52,3 +52,7 @@ __prompt_command() {
 alias xopen='xdg-open'
 
 export PATH
+
+#if [[ $TERM == "foot-extra" ]]; then
+#  export TERM=foot
+#fi
