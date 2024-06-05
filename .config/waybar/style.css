@@ -89,6 +89,7 @@ button:hover {
 #scratchpad,
 #mpd {
     padding: 0 10px;
+    margin-bottom: 3px;
     color: #ffffff;
 }
 
@@ -114,6 +115,7 @@ button:hover {
 #battery {
     background-color: #ffffff;
     color: #000000;
+    min-width: 70px;
 }
 
 #battery.charging, #battery.plugged {
@@ -170,6 +172,7 @@ label:focus {
 #pulseaudio {
     background-color: #f1c40f;
     color: #000000;
+    min-width: 70px;
 }
 
 #pulseaudio.muted {
