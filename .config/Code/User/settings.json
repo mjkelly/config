@@ -2,4 +2,7 @@
     "terminal.integrated.commandsToSkipShell": [
         "-workbench.action.quickOpen",
     ],
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+    }
 }
