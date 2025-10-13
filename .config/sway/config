@@ -62,7 +62,7 @@ exec swayidle -w \
 
 # XXX: mjk
 input "type:touchpad" {
-    dwt enabled
+    dwt disabled
     tap disabled
     natural_scroll enabled
     middle_emulation disabled

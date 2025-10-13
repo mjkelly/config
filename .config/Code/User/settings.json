@@ -4,5 +4,6 @@
     ],
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
-    }
+    },
+    "go.toolsManagement.autoUpdate": true
 }
