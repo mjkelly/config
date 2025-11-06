@@ -19,7 +19,7 @@
       "pulseaudio",
       //"backlight",
       //"keyboard-state",
-      //"sway/language",
+      "sway/language",
       "battery",
       //"battery#bat2",
       "clock",
@@ -133,6 +133,9 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
+    },
+    "sway/language": {
+        "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     }
 }
 
