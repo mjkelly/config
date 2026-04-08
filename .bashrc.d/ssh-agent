@@ -31,7 +31,6 @@ function _do_start_agent {
   umask "${old_umask}"
   /usr/bin/ssh-agent > "${SSH_ENV}"
   . "${SSH_ENV}" > /dev/null
-  /usr/bin/ssh-add
 }
 
 # Look for existing agent configuration, and if it's not found, start an agent.
@@ -54,12 +53,31 @@ function start_agent {
   fi
 }
 
+# Add any keys in ~/.ssh/*-key that aren't already loaded in the agent.
+function _add_missing_keys {
+    local key fp_source fp
+    for key in ~/.ssh/*-key; do
+        [ -f "$key" ] || continue
+        if [ -f "${key}.pub" ]; then
+            fp_source="${key}.pub"
+        else
+            fp_source="$key"
+        fi
+        fp=$(ssh-keygen -l -f "$fp_source" | awk '{print $2}')
+        if ! ssh-add -l 2>/dev/null | grep -qF " $fp "; then
+            ssh-add -t 18h "$key"
+        else
+            echo "Skipping already-loaded key $key"
+        fi
+    done
+}
+
 # "kc" (for "KeyChain"): Helper to load keys (with a timeout).
 # I run this at the beginning of each day. The timeout is set to less than 24h
 # so they don't time out early in the day when I'm already using the computer.
 function kc() {
     start_agent
-    ssh-add -t 18h ~/.ssh/*-key
+    _add_missing_keys
 }
 
 # Always load configuration (or start an agent) when starting a new shell.
