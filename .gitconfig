@@ -1,6 +1,7 @@
 [user]
   name = Michael Kelly
   email = m@michaelkelly.org
+  signingkey = 2D703BB3DBED8262
 [alias]
   ci = commit
   s = status
@@ -18,4 +19,3 @@
   ff = only
 [init]
   defaultBranch = main
-
