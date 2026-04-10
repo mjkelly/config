@@ -16,6 +16,7 @@
     ],
     "modules-right": [
       "idle_inhibitor",
+      "custom/colorscheme",
       "pulseaudio",
       //"backlight",
       //"keyboard-state",
@@ -136,6 +137,12 @@
     },
     "sway/language": {
         "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
+    },
+    "custom/colorscheme": {
+        "format": "🌙",
+        "tooltip": true,
+        "tooltip-format": "Toggle color scheme",
+        "on-click": "if [[ \"$(gsettings get org.gnome.desktop.interface color-scheme)\" = \"'prefer-dark'\" ]]; then gsettings set org.gnome.desktop.interface color-scheme prefer-light && notify-send 'prefer-light'; else gsettings set org.gnome.desktop.interface color-scheme prefer-dark && notify-send 'prefer-dark'; fi"
     }
 }
 

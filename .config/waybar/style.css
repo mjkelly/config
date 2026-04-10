@@ -88,8 +88,9 @@ button:hover {
 #idle_inhibitor,
 #scratchpad,
 #language,
+#custom-colorscheme,
 #mpd {
-    padding: 0 10px;
+    padding: 0 6px;
     margin-bottom: 3px;
     color: #ffffff;
 }
@@ -282,3 +283,6 @@ label:focus {
 	background-color: transparent;
 }
 
+#custom-colorscheme {
+    background-color: #2d3436;
+}
