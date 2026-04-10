@@ -5,5 +5,9 @@
     "[python]": {
         "editor.defaultFormatter": "ms-python.black-formatter"
     },
-    "go.toolsManagement.autoUpdate": true
+    "go.toolsManagement.autoUpdate": true,
+    "claudeCode.preferredLocation": "sidebar",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "workbench.colorTheme": "Visual Studio Dark",
+    "python.analysis.typeCheckingMode": "standard"
 }
