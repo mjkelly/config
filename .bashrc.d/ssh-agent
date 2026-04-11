@@ -21,6 +21,9 @@
 
 SSH_ENV="$HOME/.ssh/environment"
 
+# keys stay in the agent this long before expiring.
+KEY_EXPIRY="18h"
+
 # Helper to start a new ssh agent and save its configuration. Don't call this,
 # call start_agent().
 function _do_start_agent {
@@ -54,8 +57,11 @@ function start_agent {
 }
 
 # Add any keys in ~/.ssh/*-key that aren't already loaded in the agent.
+# All missing keys are loaded in a single ssh-add invocation so that, if the
+# keys share a passphrase, you're only prompted once.
 function _add_missing_keys {
     local key fp_source fp
+    local missing=()
     for key in ~/.ssh/*-key; do
         [ -f "$key" ] || continue
         if [ -f "${key}.pub" ]; then
@@ -65,11 +71,14 @@ function _add_missing_keys {
         fi
         fp=$(ssh-keygen -l -f "$fp_source" | awk '{print $2}')
         if ! ssh-add -l 2>/dev/null | grep -qF " $fp "; then
-            ssh-add -t 18h "$key"
+            missing+=("$key")
         else
             echo "Skipping already-loaded key $key"
         fi
     done
+    if [ "${#missing[@]}" -gt 0 ]; then
+        ssh-add -t "${KEY_EXPIRY}" "${missing[@]}"
+    fi
 }
 
 # "kc" (for "KeyChain"): Helper to load keys (with a timeout).
