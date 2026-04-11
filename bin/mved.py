@@ -42,14 +42,14 @@ def update_files(old_files, new_files, directory, dry_run=True):
             if new_file != '':
                 renames += 1
                 if dry_run:
-                    print('  mv %s %s' % (old_file, new_file))
+                    print(f'  mv {old_file} {new_file}')
                 else:
                     os.rename(os.path.join(directory, old_file),
                               os.path.join(directory, new_file))
             else:
                 deletes += 1
                 if dry_run:
-                    print('  rm %s' % old_file)
+                    print(f'  rm {old_file}')
                 else:
                     os.unlink(os.path.join(directory, old_file))
     return renames, deletes
@@ -81,8 +81,8 @@ def main():
     cwd = os.path.abspath(args.directory) if args.directory else os.getcwd()
     files = sorted_file_list(cwd, args.list_all)
     for f in files:
-        if '\n' in f:
-            print("ERROR: filename contains a newline -- we do not support this: %r" % f)
+        if '\n' in f or '\r' in f:
+            print(f'ERROR: filename contains a newline or carriage return -- we do not support this: {f!r}')
             sys.exit(2)
     editor = get_editor()
 
@@ -94,7 +94,7 @@ def main():
 
         result = subprocess.run([editor, tmpname])
         if result.returncode != 0:
-            print('%s exited with nonzero status (%d). Aborting.' % (editor, result.returncode))
+            print(f'{editor} exited with nonzero status ({result.returncode}). Aborting.')
             sys.exit(2)
 
         with open(tmpname, 'r') as tmp:
@@ -114,12 +114,12 @@ def main():
         print('No changes.')
         sys.exit(0)
     proceed = confirm(
-        'Will rename %d and delete %d files. Proceed?' % (renames, deletes))
+        f'Will rename {renames} and delete {deletes} files. Proceed?')
     if not proceed:
         print('No. Aborting.')
         sys.exit(1)
     renames, deletes = update_files(files, new_files, cwd, dry_run=False)
-    print('Renamed %d and deleted %d files.' % (renames, deletes))
+    print(f'Renamed {renames} and deleted {deletes} files.')
 
 
 if __name__ == '__main__':
