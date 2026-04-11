@@ -2,7 +2,7 @@
 # -----------------------------------------------------------------
 # deploy.sh -- Deploys the files in the configuration directory.
 # 
-# Copyright (c) 2023 Michael J. Kelly <m@michaelkelly.org>.
+# Copyright (c) 2026 Michael J. Kelly <m@michaelkelly.org>.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,10 +26,6 @@
 # CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# Tested with dash 0.5.11.
-#
-# Thu Jul 13 12:10:10 AM EDT 2023
 # -----------------------------------------------------------------
 
 # File used to mark directories we should recurse into.
@@ -46,7 +42,7 @@ TIMESTAMP="$(date +%Y%m%d-%H%M%S)"
 deploy_dir () {
   local target=$1
   local path=$2
-  echo "# DIR: $path"
+  echo "#D $path"
 
   if [ ! -d "$target" -a "$MODE" = "real" ]; then
     mkdir -- "$target"
@@ -56,7 +52,7 @@ deploy_dir () {
     f="$path/$base_f"
     # We don't copy a specific list of files.
     if grep -q -- "^$base_f\$" "$CONF_DIR/$IGNOREFILES"; then
-      echo "# SKIP: $f"
+      echo "#S $f"
       continue
     fi
 
@@ -87,7 +83,7 @@ deploy_file () {
     if [ -e "$dest" ]; then
       # Don't make backups of links if we don't have to
       if [ -h "$dest" -a "$(readlink "$dest")" = "$file" ]; then
-        echo "# SKIP EQUAL SYMLINK: $file -> $dest"
+        echo "#= $file $dest"
         return
       fi
       maybe_mv -- "$dest" "$dest_backup"
@@ -114,13 +110,14 @@ maybe_mv () {
 
 ACTION=$1
 CONF_DIR="$PWD"
+TARGET_BASE="${DEPLOY_TARGET:-$HOME}"
 
 if [ "$ACTION" = "deploy" ]; then
-  TARGET_DIR="$HOME"
+  TARGET_DIR="$TARGET_BASE"
   MODE="real"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
 elif [ "$ACTION" = "test" ]; then
-  TARGET_DIR="$HOME/test"
+  TARGET_DIR="$TARGET_BASE/test"
   echo
   echo "*** Test-run mode. Deploying to ${TARGET_DIR}. ***"
   echo
@@ -130,7 +127,7 @@ elif [ "$ACTION" = "dryrun" ]; then
   echo
   echo "*** Dry-run mode. Run '$0 config' to run for real. ***"
   echo
-  TARGET_DIR="$HOME"
+  TARGET_DIR="$TARGET_BASE"
   MODE="test"
   deploy_dir "$TARGET_DIR" "$CONF_DIR"
 else
