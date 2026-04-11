@@ -1,6 +1,12 @@
 {
+    // Real-time signal slots used by custom modules (SIGRTMIN+N).
+    // When adding a module that uses `"signal": N`, append it here so
+    // the next one picks a free slot.
+    //   8 — custom/colorscheme
+    //
     // "layer": "top", // Waybar at top layer
     // "position": "bottom", // Waybar position (top|bottom|left|right)
+    //
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
@@ -139,10 +145,10 @@
         "on-click": "swaymsg input type:keyboard xkb_switch_layout next",
     },
     "custom/colorscheme": {
-        "format": "🌙",
-        "tooltip": true,
-        "tooltip-format": "Toggle color scheme",
-        "on-click": "if [[ \"$(gsettings get org.gnome.desktop.interface color-scheme)\" = \"'prefer-dark'\" ]]; then gsettings set org.gnome.desktop.interface color-scheme prefer-light && notify-send 'prefer-light'; else gsettings set org.gnome.desktop.interface color-scheme prefer-dark && notify-send 'prefer-dark'; fi"
+        "exec": "if [[ \"$(gsettings get org.gnome.desktop.interface color-scheme)\" = \"'prefer-dark'\" ]]; then echo '{\"text\": \"🌙\", \"class\": \"dark\", \"tooltip\": \"Dark mode (click for light)\"}'; else echo '{\"text\": \"☀️\", \"class\": \"light\", \"tooltip\": \"Light mode (click for dark)\"}'; fi",
+        "return-type": "json",
+        "signal": 8,
+        "on-click": "if [[ \"$(gsettings get org.gnome.desktop.interface color-scheme)\" = \"'prefer-dark'\" ]]; then gsettings set org.gnome.desktop.interface color-scheme prefer-light; else gsettings set org.gnome.desktop.interface color-scheme prefer-dark; fi; pkill -RTMIN+8 waybar"
     }
 }
 
