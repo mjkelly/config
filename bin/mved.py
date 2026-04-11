@@ -34,7 +34,7 @@ def get_editor():
     return os.getenv('EDITOR', os.getenv('VISUAL', 'vi'))
 
 
-def update_files(old_files, new_files, dry_run=True):
+def update_files(old_files, new_files, directory, dry_run=True):
     renames, deletes = 0, 0
     for i, new_file in enumerate(new_files):
         old_file = old_files[i]
@@ -44,13 +44,14 @@ def update_files(old_files, new_files, dry_run=True):
                 if dry_run:
                     print('  mv %s %s' % (old_file, new_file))
                 else:
-                    os.rename(old_file, new_file)
+                    os.rename(os.path.join(directory, old_file),
+                              os.path.join(directory, new_file))
             else:
                 deletes += 1
                 if dry_run:
                     print('  rm %s' % old_file)
                 else:
-                    os.unlink(old_file)
+                    os.unlink(os.path.join(directory, old_file))
     return renames, deletes
 
 
@@ -70,9 +71,14 @@ def main():
         action='store_true',
         dest='list_all',
         help='List all files (including dotfiles; excluding "." and "..").')
+    parser.add_argument(
+        'directory',
+        nargs='?',
+        default=None,
+        help='Directory to rename files in (default: current directory).')
     args = parser.parse_args()
 
-    cwd = os.getcwd()
+    cwd = os.path.abspath(args.directory) if args.directory else os.getcwd()
     files = sorted_file_list(cwd, args.list_all)
     for f in files:
         if '\n' in f:
@@ -102,16 +108,17 @@ def main():
     finally:
         os.unlink(tmpname)
 
-    renames, deletes = update_files(files, new_files, dry_run=True)
+    print(f'In {cwd}:')
+    renames, deletes = update_files(files, new_files, cwd, dry_run=True)
     if renames + deletes == 0:
         print('No changes.')
         sys.exit(0)
     proceed = confirm(
-        'Will rename %d and delete %d files. Proceed? ' % (renames, deletes))
+        'Will rename %d and delete %d files. Proceed?' % (renames, deletes))
     if not proceed:
         print('No. Aborting.')
         sys.exit(1)
-    renames, deletes = update_files(files, new_files, dry_run=False)
+    renames, deletes = update_files(files, new_files, cwd, dry_run=False)
     print('Renamed %d and deleted %d files.' % (renames, deletes))
 
 
