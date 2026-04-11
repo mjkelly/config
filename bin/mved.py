@@ -1,30 +1,29 @@
 #!/usr/bin/env python3
 # -----------------------------------------------------------------
 # mved.py -- Renames files in the current directory through a text editor.
-# Copyright 2007 Michael Kelly (michael@michaelkelly.org)
+# Copyright 2007 Michael Kelly (m@michaelkelly.org), Hunter Freyer
+# (yt@hjfreyer.com).
 #
 # This program is released under the terms of the GNU General Public
 # License as published by the Free Software Foundation; either version 2
 # of the License, or (at your option) any later version.
-#
-# Sun Feb  7 13:38:06 EST 2010
-# Updated Sat Nov  2 22:00:17 EDT 2019
 # -----------------------------------------------------------------
 
 import sys
 import os
+import subprocess
 import tempfile
 import argparse
 
 
-def sorted_file_list(directory, all=False):
+def sorted_file_list(directory, include_hidden=False):
     '''Get a sorted list of the files in the given directory.
 
     Args:
-      all: if true, include hidden (dot) files.
+      include_hidden: if true, include hidden (dot) files.
     '''
     files = os.listdir(directory)
-    if not all:
+    if not include_hidden:
         files = [f for f in files if not f.startswith('.')]
     files.sort()
     return files
@@ -55,7 +54,7 @@ def update_files(old_files, new_files, dry_run=True):
     return renames, deletes
 
 
-def confirm(msg, default=False):
+def confirm(msg):
     '''Prompt the user with message to which they can reply 'y' or 'n'.'''
     sys.stdout.write(msg + ' [y/N] ')
     sys.stdout.flush()
@@ -63,7 +62,7 @@ def confirm(msg, default=False):
     return response == 'y' or response == 'yes'
 
 
-def main(argv):
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         '-a',
@@ -75,45 +74,40 @@ def main(argv):
 
     cwd = os.getcwd()
     files = sorted_file_list(cwd, args.list_all)
+    for f in files:
+        if '\n' in f:
+            print("ERROR: filename contains a newline -- we do not support this: %r" % f)
+            sys.exit(2)
     editor = get_editor()
 
     tmpfd, tmpname = tempfile.mkstemp()
-    for f in files:
-        os.write(tmpfd, bytes(f + '\n', encoding='utf-8'))
-    os.close(tmpfd)
+    try:
+        for f in files:
+            os.write(tmpfd, (f + '\n').encode())
+        os.close(tmpfd)
 
-    pid = os.fork()
-    if pid == 0:
-        # child
-        try:
-            os.execvp(editor, [editor, tmpname])
-        except RuntimeError as e:
-            print(e)
-            sys.exit(1)
-    # parent (child ends with execvp)
-    w_pid, w_status = os.waitpid(pid, 0)
-    if w_status != 0:
-        print('%s exited with nonzero status (%d). Aborting.' % (editor,
-                                                                 w_status))
-        sys.exit(2)
-
-    with open(tmpname, 'r') as tmp:
-        new_files = tmp.readlines()
-        if len(new_files) != len(files):
-            print(
-                "ERROR: You added or deleted a line. Don't do that. Use blank "
-                'lines to delete files.')
+        result = subprocess.run([editor, tmpname])
+        if result.returncode != 0:
+            print('%s exited with nonzero status (%d). Aborting.' % (editor, result.returncode))
             sys.exit(2)
-    os.unlink(tmpname)
-    new_files = [f.rstrip('\n\r') for f in new_files]
+
+        with open(tmpname, 'r') as tmp:
+            new_files = tmp.readlines()
+            if len(new_files) != len(files):
+                print(
+                    "ERROR: You added or deleted a line. Don't do that. Use blank "
+                    'lines to delete files.')
+                sys.exit(2)
+        new_files = [f.rstrip('\n\r') for f in new_files]
+    finally:
+        os.unlink(tmpname)
 
     renames, deletes = update_files(files, new_files, dry_run=True)
     if renames + deletes == 0:
         print('No changes.')
         sys.exit(0)
     proceed = confirm(
-        'Will rename %d and delete %d files. Proceed? ' % (renames, deletes),
-        default=False)
+        'Will rename %d and delete %d files. Proceed? ' % (renames, deletes))
     if not proceed:
         print('No. Aborting.')
         sys.exit(1)
@@ -122,4 +116,4 @@ def main(argv):
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    main()
