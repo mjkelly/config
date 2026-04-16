@@ -35,7 +35,7 @@ __prompt_command() {
   local rc=$?
   local prefix=''
   if [[ $rc -ne 0 ]]; then
-    prefix="\[\033[31m\]($rc)\[\033[m\] "
+    prefix="\[\033[31m\]$rc\[\033[m\] "
     # If you prefer to avoid the red color here:
     #prefix="($rc) "
   fi
