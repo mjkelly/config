@@ -32,8 +32,8 @@ function _do_start_agent {
   umask 0066
   touch "${SSH_ENV}"
   umask "${old_umask}"
-  /usr/bin/ssh-agent > "${SSH_ENV}"
-  . "${SSH_ENV}" > /dev/null
+  /usr/bin/ssh-agent >"${SSH_ENV}"
+  . "${SSH_ENV}" >/dev/null
 }
 
 # Look for existing agent configuration, and if it's not found, start an agent.
@@ -41,14 +41,11 @@ function _do_start_agent {
 function start_agent {
   # Source SSH settings, if applicable
   if [ -f "${SSH_ENV}" ]; then
-    . "${SSH_ENV}" > /dev/null
-    # We don't try "kill -0 $SSH_AGENT_PID" because that only checks if
-    # *something* is running at that PID. We need to know that ssh-agent
-    # specifically is running there. Since this is probably running near
-    # startup, you're likely filling up low PIDs and it is entirely plausible
-    # to have a collision.
-    pgrep ssh-agent | grep "^${SSH_AGENT_PID}$" >/dev/null 2>&1
-    if [ "$?" -ne "0" ]; then
+    . "${SSH_ENV}" >/dev/null
+    # Check if the agent is available by running ssh-add: It returns 2 if it
+    # can't connect to an agent.
+    ssh-add -l >/dev/null 2>&1
+    if [ "$?" -eq 2 ]; then
       _do_start_agent
     fi
   else
