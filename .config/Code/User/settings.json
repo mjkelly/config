@@ -9,5 +9,5 @@
     "claudeCode.preferredLocation": "sidebar",
     "github.copilot.nextEditSuggestions.enabled": true,
     "workbench.colorTheme": "Visual Studio Dark",
-    "python.analysis.typeCheckingMode": "standard"
+    "python.analysis.typeCheckingMode": "standard",
 }
